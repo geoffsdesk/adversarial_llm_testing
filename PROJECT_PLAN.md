@@ -358,6 +358,158 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 
 ---
 
+### Phase 6.25: WildBench Integration (Priority: Medium)
+**Goal**: Integrate WildBench standardized evaluation framework for comprehensive real-world task benchmarking of LLMs.
+
+**Context**: WildBench provides 1,024 challenging tasks from real user-chatbot conversations, enabling evaluation of LLM performance on authentic, diverse user queries. Unlike benchmarks with hand-crafted examples (MT-bench: 80 tasks) or simple datasets (AlpacaEval: 805 tasks), WildBench offers tasks that mirror natural user task distributions with longer, more complex queries (avg 978.5 chars) and multi-turn conversations (up to 5 turns).
+
+**Reference**: [WildBench Paper](https://allenai.github.io/WildBench/WildBench_paper.pdf), [WildBench HuggingFace](https://huggingface.co/datasets/allenai/WildBench)
+
+#### Tasks:
+- [ ] WildBench dataset integration:
+  - [ ] Load WildBench V2 dataset (1,024 tasks from WildChat project)
+  - [ ] Support for multi-turn conversations (up to 5 turns)
+  - [ ] Static chat history handling
+  - [ ] Real-world user query processing (long-form queries, 978.5 avg chars)
+  - [ ] Task metadata and categorization support
+  
+- [ ] Task categorization (12 categories):
+  - [ ] Information seeking (specific information or facts)
+  - [ ] Reasoning (logical thinking, problem-solving)
+  - [ ] Planning (creating plans or strategies)
+  - [ ] Editing (editing, rephrasing, proofreading)
+  - [ ] Coding & Debugging (writing, reviewing, fixing code)
+  - [ ] Math (mathematical concepts, problems, calculations)
+  - [ ] Role playing (character or persona adoption)
+  - [ ] Data Analysis (interpreting data, statistics, analytical tasks)
+  - [ ] Creative Writing (stories, poems, creative texts)
+  - [ ] Advice seeking (recommendations or guidance)
+  - [ ] Brainstorming (generating ideas, creative thinking)
+  - [ ] Others (miscellaneous queries)
+  
+- [ ] Consolidated category groups (5 major groups):
+  - [ ] Info Seeking (Information seeking + Advice seeking)
+  - [ ] Math & Data (Math + Data Analysis)
+  - [ ] Reasoning & Planning (Reasoning + Planning)
+  - [ ] Creative Tasks (Creative Writing, Role playing, Brainstorming, Editing)
+  - [ ] Coding & Debugging
+  
+- [ ] WB-Reward metric implementation (pairwise comparison):
+  - [ ] Five-outcome comparison system:
+    - [ ] "A++": Response A much better than B
+    - [ ] "A+": Response A slightly better than B
+    - [ ] "A=B": Responses are equal quality (tie)
+    - [ ] "B+": Response B slightly better than A
+    - [ ] "B++": Response B much better than A
+  - [ ] Three baseline models integration (varying performance levels):
+    - [ ] Low-performance baseline model
+    - [ ] Medium-performance baseline model
+    - [ ] High-performance baseline model
+  - [ ] Comprehensive pairwise evaluation framework
+  - [ ] Length bias mitigation:
+    - [ ] Convert slight wins/losses to ties if winner exceeds loser by K characters
+    - [ ] Configurable length penalty threshold
+  - [ ] Structured evaluation process:
+    - [ ] Step-by-step analysis generation
+    - [ ] Three-aspect summarization (reason A=B, reason A>B, reason B>A)
+    - [ ] JSON output format for automated parsing
+  
+- [ ] WB-Score metric implementation (individual scoring):
+  - [ ] Individual quality scoring (1-10 scale):
+    - [ ] Score 1-2: Very poor, doesn't make sense
+    - [ ] Score 3-4: Poor, doesn't help solve problem meaningfully
+    - [ ] Score 5-6: Fair, has issues (factual errors, hallucinations, missing info)
+    - [ ] Score 7-8: Good enough, could be improved
+    - [ ] Score 9-10: Perfect, provides helpful information
+  - [ ] Fast and cost-efficient evaluation
+  - [ ] Strengths and weaknesses analysis
+  - [ ] JSON output format for automated parsing
+  
+- [ ] LLM-as-a-judge evaluation system:
+  - [ ] GPT-4-turbo judge integration (or equivalent advanced LLM)
+  - [ ] Zero-shot Chain-of-Thoughts (CoT) prompting:
+    - [ ] Step-by-step evaluation process
+    - [ ] Structured analysis generation
+    - [ ] Detailed justification for scores/comparisons
+  - [ ] Task-specific checklist generation:
+    - [ ] Automatic checklist creation based on task category
+    - [ ] Customizable evaluation criteria
+    - [ ] Checklist-guided evaluation prompts
+  - [ ] Evaluation prompt templates:
+    - [ ] Pairwise comparison template (WB-Reward)
+    - [ ] Individual scoring template (WB-Score)
+    - [ ] Conversation history integration
+    - [ ] Task context embedding
+  
+- [ ] Evaluation pipeline:
+  - [ ] Test case generation from WildBench dataset
+  - [ ] Model response generation for test cases
+  - [ ] Automated evaluation using WB-Reward or WB-Score
+  - [ ] Result aggregation and statistics
+  - [ ] Correlation validation with human judgments
+  - [ ] Performance metrics calculation
+  
+- [ ] WildBench leaderboard integration:
+  - [ ] Result submission to WildBench leaderboard
+  - [ ] Cross-model performance comparison
+  - [ ] Historical result tracking
+  - [ ] Leaderboard visualization
+  - [ ] Model ranking by category
+  
+- [ ] Evaluation reproducibility:
+  - [ ] Evaluation scripts (WB-Reward and WB-Score)
+  - [ ] Generation scripts for different models
+  - [ ] Consistent evaluation parameters
+  - [ ] Result caching and versioning
+  - [ ] Evaluation configuration management
+  
+- [ ] Correlation validation:
+  - [ ] Pearson correlation calculation with Chatbot Arena Elo ratings
+  - [ ] Target correlation: 0.98 for WB-Reward, 0.95 for WB-Score (top-ranking models)
+  - [ ] Comparison with other benchmarks (ArenaHard: 0.91, AlpacaEval2.0: 0.87-0.89)
+  - [ ] Validation reports and visualizations
+
+**Deliverables**:
+- WildBenchTester class with comprehensive evaluation capabilities
+- WB-Reward pairwise comparison implementation
+- WB-Score individual scoring implementation
+- LLM-as-a-judge evaluation system (GPT-4-turbo or equivalent)
+- Task categorization framework (12 categories, 5 consolidated groups)
+- Multi-turn conversation support (up to 5 turns)
+- Length bias mitigation for fair evaluation
+- WildBench leaderboard integration
+- Evaluation reproducibility tools
+- Correlation validation with human judgments
+
+**Key Features**:
+- 1,024 challenging tasks from real user-chatbot conversations
+- Real-world query evaluation (avg 978.5 char queries, 3402.1 char prompts)
+- Multi-turn conversation support with static chat history
+- Two evaluation metrics: WB-Reward (pairwise) and WB-Score (individual)
+- Three baseline models for comprehensive pairwise assessment
+- Length bias mitigation for fair comparisons
+- Task-specific checklists for systematic evaluation
+- Zero-shot Chain-of-Thoughts prompting for structured analysis
+- Strong correlation with human judgments (0.98 WB-Reward, 0.95 WB-Score)
+- 12 task categories consolidated into 5 major groups
+
+**Use Cases**:
+- Comprehensive real-world task evaluation of LLMs
+- Benchmarking models on challenging user queries
+- Multi-turn conversation evaluation
+- Category-specific performance analysis
+- Model comparison using standardized evaluation framework
+- Academic research and model development
+- Cross-model performance comparison via leaderboard
+- Evaluation reproducibility and validation
+
+**Performance Targets**:
+- WB-Reward: 0.98 Pearson correlation with Chatbot Arena Elo ratings (top models)
+- WB-Score: 0.95 Pearson correlation with Chatbot Arena Elo ratings (top models)
+- Surpass ArenaHard (0.91) and AlpacaEval2.0 (0.87-0.89) correlation scores
+
+---
+
 ### Phase 6.5: Local Inference Support (Priority: High)
 **Goal**: Enable users to test models locally using llama.cpp or vLLM without requiring cloud API access.
 
@@ -921,6 +1073,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Phase 6: Additional Features
 - Advanced reporting
 - CLI interface
+- Phase 6.25: WildBench Integration - Medium Priority for Real-World Task Evaluation
 - Phase 6.5: Local inference support (llama.cpp, vLLM) - High Priority for Offline Testing
 - Phase 7.5: Jailbreak & Guardrail Testing (High Priority for Production Models)
 - Phase 8: GKE Deployment & GPU/TPU Support
