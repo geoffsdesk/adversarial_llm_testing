@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
 authors = [
-    {name = "Security Research", email = ""},
+    {name = "Security Research"},
 ]
 keywords = [
     "llm",
