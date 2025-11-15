@@ -1157,6 +1157,304 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 
 ---
 
+### Phase 10: Frontier Security Research Model (Priority: High)
+**Goal**: Create and train a specialized frontier model exclusively designed for security research on other LLMs and multimodal models.
+
+**Context**: Traditional adversarial testing relies on manual prompt engineering or rule-based systems. A dedicated frontier model trained specifically for security research can autonomously discover vulnerabilities, generate sophisticated attack patterns, and adapt to new model architectures faster than human-driven approaches.
+
+#### Tasks:
+- [ ] Model architecture design:
+  - [ ] Specialized architecture for adversarial prompt generation
+  - [ ] Multimodal support (text, image, video analysis)
+  - [ ] Long-context handling for multi-turn attacks
+  - [ ] Reasoning capabilities for attack chain planning
+  - [ ] Fine-tunable base model selection (GPT-4/Claude-level or open-source equivalent)
+  
+- [ ] Training data curation:
+  - [ ] Collect successful jailbreak examples (HarmBench, T2VSafetyBench, WildBench, community repos)
+  - [ ] Annotate attack patterns and techniques
+  - [ ] Create adversarial prompt generation datasets
+  - [ ] Include multimodal attack examples (text-to-video, image generation)
+  - [ ] Generate synthetic attack patterns via data augmentation
+  - [ ] Balance across attack categories (injection, jailbreak, multimodal, etc.)
+  
+- [ ] Model training:
+  - [ ] Pre-training or fine-tuning on security research dataset
+  - [ ] Reinforcement learning from human feedback (RLHF) for attack quality
+  - [ ] Reward modeling for attack success rates
+  - [ ] Safety alignment to ensure ethical use (red-teaming only)
+  - [ ] Multi-task learning (prompt generation, vulnerability analysis, defense evaluation)
+  
+- [ ] Specialized capabilities:
+  - [ ] Autonomous vulnerability discovery
+  - [ ] Attack pattern generation and refinement
+  - [ ] Multi-model attack adaptation (generalize across model architectures)
+  - [ ] Real-time feedback integration (learn from failed attacks)
+  - [ ] Attack success rate prediction
+  - [ ] Defense mechanism analysis
+  
+- [ ] Evaluation and validation:
+  - [ ] Test against diverse model architectures (GPT, Claude, Gemini, Sora, etc.)
+  - [ ] Measure attack success rates vs. manual approaches
+  - [ ] Validate ethical boundaries (red-teaming only, no malicious use)
+  - [ ] Benchmark against existing security research tools
+  - [ ] Continuous improvement based on new vulnerabilities
+  
+- [ ] Infrastructure and deployment:
+  - [ ] Model hosting infrastructure (GKE with GPU support for inference)
+  - [ ] API endpoints for integration with testing framework
+  - [ ] Local deployment option for privacy-sensitive testing
+  - [ ] Rate limiting and usage monitoring
+  - [ ] Model versioning and updates
+
+**Deliverables**:
+- Frontier security research model (trained for adversarial testing)
+- Training datasets and curation pipeline
+- Model evaluation benchmarks
+- API and deployment infrastructure
+- Documentation on model capabilities and limitations
+- Ethical use guidelines and safety measures
+
+**Key Features**:
+- Autonomous vulnerability discovery
+- Multi-model attack generalization
+- Multimodal attack support (text, video, image)
+- Real-time adaptation to new defenses
+- Attack success rate prediction
+- Ethical boundaries and safety alignment
+
+**Use Cases**:
+- Automated security research on production models
+- Continuous vulnerability scanning
+- Defense mechanism evaluation
+- Academic security research
+- Model safety assessment before deployment
+
+---
+
+### Phase 11: Agentic Testing Processes & Specialized Models (Priority: High)
+**Goal**: Create smaller, specialized agentic processes and models that can autonomously run subsets of tests (e.g., jailbreaking text-to-video models, prompt injection testing, etc.).
+
+**Context**: Different attack categories require specialized knowledge and techniques. Instead of a monolithic testing system, specialized agents can focus on specific domains (text-to-video jailbreaking, prompt injection, etc.) and operate in parallel for efficient testing.
+
+#### Tasks:
+- [ ] Agentic architecture design:
+  - [ ] Multi-agent system framework
+  - [ ] Agent communication and coordination protocols
+  - [ ] Task distribution and load balancing
+  - [ ] Agent lifecycle management (spawn, execute, terminate)
+  - [ ] Shared memory/state management for agents
+  
+- [ ] Specialized agent implementations:
+  - [ ] **Text-to-Video Jailbreak Agent**:
+    - [ ] T2VSafetyBench integration
+    - [ ] Framing & Rephrasing techniques (medical, sci-fi, cultural)
+    - [ ] Mutation & Synonyms implementation
+    - [ ] JSON/Structured Prompts generator
+    - [ ] Gradual Escalation strategies
+    - [ ] Cross-Modal Exploits detection
+    - [ ] Model-specific optimizations (Sora, Sora 2, Kling, Open-Sora)
+  - [ ] **Prompt Injection Agent**:
+    - [ ] All 7 injection categories
+    - [ ] Adaptive injection pattern generation
+    - [ ] Context-aware injection strategies
+    - [ ] Multi-turn injection sequences
+  - [ ] **Jailbreak & Guardrail Agent**:
+    - [ ] Chain-of-Thought Hijacking
+    - [ ] Context Poisoning / Long-Context Exploitation
+    - [ ] Helpfulness Exploitation / Framing Attacks
+    - [ ] Adaptive / Iterative Optimization
+    - [ ] Deception Tactics
+    - [ ] HarmBench integration
+  - [ ] **Role-Playing & Hypothetical Agent**:
+    - [ ] Role-playing scenarios
+    - [ ] Hypothetical framing attacks
+    - [ ] Token obfuscation techniques
+  - [ ] **Evaluation Agent** (WildBench):
+    - [ ] Real-world task evaluation
+    - [ ] WB-Reward and WB-Score metrics
+    - [ ] LLM-as-a-judge evaluation
+    - [ ] Correlation validation
+  
+- [ ] Agent training/specialization:
+  - [ ] Fine-tune smaller models for each agent type
+  - [ ] Domain-specific training data
+  - [ ] Reinforcement learning for task-specific optimization
+  - [ ] Few-shot learning capabilities
+  - [ ] Agent-specific prompt templates and strategies
+  
+- [ ] Agentic process framework:
+  - [ ] Goal-setting and planning (autonomous test selection)
+  - [ ] Action execution (generate prompts, send to model)
+  - [ ] Observation and feedback (analyze responses)
+  - [ ] Learning and adaptation (refine strategies based on results)
+  - [ ] Decision-making (when to stop, escalate, or try different approach)
+  
+- [ ] Coordination and orchestration:
+  - [ ] Agent coordination protocols
+  - [ ] Parallel execution capabilities
+  - [ ] Conflict resolution (if multiple agents target same vulnerability)
+  - [ ] Result aggregation across agents
+  - [ ] Resource management (API rate limits, compute allocation)
+  
+- [ ] Model connection abstraction:
+  - [ ] Unified interface for local models (llama.cpp, vLLM)
+  - [ ] Unified interface for API models (OpenAI, Anthropic, etc.)
+  - [ ] Connection pooling and management
+  - [ ] Automatic retry and error handling
+  - [ ] Request batching and optimization
+  
+- [ ] Testing workflow automation:
+  - [ ] Automated test suite selection based on model type
+  - [ ] Agent assignment to test categories
+  - [ ] Progress tracking and reporting
+  - [ ] Early stopping conditions (success threshold reached)
+  - [ ] Result storage and analysis
+
+**Deliverables**:
+- Multi-agent system framework
+- Specialized agents (Text-to-Video, Prompt Injection, Jailbreak, etc.)
+- Agent training pipelines and models
+- Agentic process framework
+- Coordination and orchestration system
+- Model connection abstraction layer
+- Automated testing workflows
+
+**Key Features**:
+- Autonomous test execution by specialized agents
+- Parallel agent execution for efficiency
+- Domain-specific optimization per agent
+- Real-time adaptation based on results
+- Unified model connection interface (local and API)
+- Automated workflow orchestration
+
+**Use Cases**:
+- Automated security testing of new model deployments
+- Continuous vulnerability monitoring
+- Targeted testing of specific attack categories
+- Efficient parallel testing across multiple model types
+- Resource-optimized testing workflows
+
+---
+
+### Phase 12: Mixture of Experts (MoE) Integration & Orchestration (Priority: High)
+**Goal**: Integrate all testing capabilities (frontier model, specialized agents, existing testers) into a unified Mixture of Experts system that can autonomously run extensive testing for all pertinent features against any given model type.
+
+**Context**: A Mixture of Experts (MoE) architecture allows the system to route different types of tests to the most appropriate expert (frontier model, specialized agent, or existing tester). This creates a comprehensive, adaptive testing system that can handle any model type and test category efficiently.
+
+#### Tasks:
+- [ ] MoE architecture design:
+  - [ ] Expert routing and selection logic
+  - [ ] Load balancing across experts
+  - [ ] Dynamic expert activation/deactivation
+  - [ ] Expert capability matching (match test type to best expert)
+  - [ ] Multi-expert collaboration for complex tests
+  
+- [ ] Expert integration:
+  - [ ] Frontier Security Research Model integration (Phase 10)
+  - [ ] Specialized Agentic Processes integration (Phase 11)
+  - [ ] Existing testers integration (PromptInjectionTester, RolePlayingTester, etc.)
+  - [ ] WildBench integration (evaluation expert)
+  - [ ] HarmBench integration (harmful behavior expert)
+  - [ ] T2VSafetyBench integration (multimodal expert)
+  
+- [ ] Model connection and abstraction:
+  - [ ] Unified model connection interface:
+    - [ ] Local model support (llama.cpp, vLLM via Phase 6.5)
+    - [ ] API model support (OpenAI, Anthropic, HuggingFace, etc.)
+    - [ ] Custom model adapter framework
+  - [ ] Connection setup automation:
+    - [ ] Auto-detection of model capabilities
+    - [ ] Model type classification (text-only, multimodal, video, etc.)
+    - [ ] Automatic test suite selection based on model type
+  - [ ] Connection management:
+    - [ ] Connection pooling
+    - [ ] Rate limiting and throttling
+    - [ ] Error handling and retry logic
+    - [ ] Health monitoring and failover
+  
+- [ ] Test orchestration engine:
+  - [ ] Comprehensive test planning:
+    - [ ] Identify all pertinent features for given model type
+    - [ ] Generate test plan covering all attack categories
+    - [ ] Prioritize tests based on model capabilities
+    - [ ] Estimate resource requirements
+  - [ ] Expert assignment:
+    - [ ] Route tests to appropriate experts
+    - [ ] Parallel execution coordination
+    - [ ] Dependency management (some tests may depend on others)
+  - [ ] Execution management:
+    - [ ] Monitor test execution progress
+    - [ ] Handle failures and retries
+    - [ ] Collect and aggregate results
+    - [ ] Real-time reporting and dashboards
+  
+- [ ] Adaptive testing strategy:
+  - [ ] Start with broad exploratory testing (frontier model)
+  - [ ] Route discovered vulnerabilities to specialized agents
+  - [ ] Deep dive into specific attack categories
+  - [ ] Iterative refinement based on results
+  - [ ] Early stopping when sufficient coverage achieved
+  
+- [ ] Result aggregation and analysis:
+  - [ ] Collect results from all experts
+  - [ ] Unified reporting format
+  - [ ] Vulnerability correlation and analysis
+  - [ ] Model risk assessment
+  - [ ] Remediation recommendations
+  - [ ] Historical tracking and trend analysis
+  
+- [ ] Performance optimization:
+  - [ ] Parallel expert execution
+  - [ ] Caching and reuse of generated prompts
+  - [ ] Batch processing for API calls
+  - [ ] Resource pooling and sharing
+  - [ ] Distributed execution support (GKE deployment)
+  
+- [ ] User interface and API:
+  - [ ] REST API for test execution
+  - [ ] Web dashboard for test management
+  - [ ] Real-time progress monitoring
+  - [ ] Result visualization and export
+  - [ ] Configuration management (test selection, expert preferences)
+
+**Deliverables**:
+- MoE orchestration system
+- Expert routing and selection framework
+- Unified model connection abstraction
+- Comprehensive test orchestration engine
+- Adaptive testing strategy implementation
+- Result aggregation and analysis system
+- REST API and web dashboard
+- Performance optimization and distributed execution support
+
+**Key Features**:
+- Automatic expert selection based on test type and model capabilities
+- Unified model connection (local and API) with auto-detection
+- Comprehensive test coverage for all pertinent features
+- Adaptive testing strategy (explore → specialize → deep dive)
+- Parallel execution across multiple experts
+- Real-time monitoring and reporting
+- Distributed execution support (GKE)
+
+**Use Cases**:
+- Comprehensive security assessment of any model (local or API)
+- Automated testing workflow from connection to report
+- Continuous security monitoring
+- Pre-deployment model validation
+- Comparative analysis across multiple models
+- Academic research and benchmarking
+
+**Integration Points**:
+- Phase 10: Frontier Security Research Model
+- Phase 11: Agentic Testing Processes & Specialized Models
+- Phase 6.5: Local Inference Support (llama.cpp, vLLM)
+- Phase 7.5: Jailbreak & Guardrail Testing
+- Phase 6.25: WildBench Integration
+- Existing testers (PromptInjectionTester, RolePlayingTester, etc.)
+
+---
+
 ## Prioritization Matrix
 
 ### Must Have (v0.2.0)
@@ -1178,6 +1476,11 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Phase 7.5: Jailbreak & Guardrail Testing (High Priority for Production Models)
 - Phase 8: GKE Deployment & GPU/TPU Support
 - Phase 9: PyRIT Feature Parity & Enterprise Features (High Priority for Enterprise Adoption)
+
+### Advanced Features (v1.0.0+)
+- Phase 10: Frontier Security Research Model (High Priority for Autonomous Security Research)
+- Phase 11: Agentic Testing Processes & Specialized Models (High Priority for Automated Testing)
+- Phase 12: Mixture of Experts (MoE) Integration & Orchestration (High Priority for Comprehensive Testing)
 
 ---
 
@@ -1217,6 +1520,11 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - [ ] Attack orchestrators implemented
 - [ ] Feature parity with PyRIT achieved
 - [ ] Enterprise deployment options available
+- [ ] Frontier Security Research Model operational
+- [ ] Agentic testing processes deployed and functional
+- [ ] MoE orchestration system operational
+- [ ] Unified model connection abstraction working (local and API)
+- [ ] Comprehensive automated testing workflow functional
 
 ---
 
