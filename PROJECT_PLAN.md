@@ -26,23 +26,37 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - ✅ TokenObfuscationTester (Unicode, character substitutions, whitespace, encoding, tokenization)
   - ✅ DefenseAnalyzer (pattern analysis, risk scoring, defense recommendations)
 - ✅ Phase 4: Testing & Quality Assurance (COMPLETED)
-  - ✅ Comprehensive test suite (62 tests, all passing)
-  - ✅ 81% code coverage (exceeds >80% target)
+  - ✅ Comprehensive test suite (75 tests, all passing)
+  - ✅ 82% code coverage (exceeds >80% target)
   - ✅ Code quality tools (black, flake8, mypy configured)
   - ✅ GitHub Actions CI/CD pipeline (Python 3.8-3.12)
 - ✅ Phase 5: Documentation & Examples (COMPLETED)
   - ✅ Comprehensive README with detailed usage examples
-  - ✅ 5 example scripts (basic, advanced, custom integration, batch testing, result analysis)
+  - ✅ 6 example scripts (basic, advanced, custom integration, batch testing, result analysis, advanced reporting)
   - ✅ Contributing guidelines (CONTRIBUTING.md)
   - ✅ Version history (CHANGELOG.md)
   - ✅ Security policy (SECURITY.md)
-- ✅ Phase 6: Async Support (PARTIALLY COMPLETED)
-  - ✅ Async model callbacks (automatic detection, supports both sync and async)
-  - ✅ Parallel test execution (with semaphore-based concurrency control)
-  - ✅ Async result processing (test_model_async, run_test_suite_async)
-  - ✅ 6 async tests added (all passing)
-  - ✅ Async usage example script
-  - ✅ README updated with async examples
+- ✅ Phase 6: Additional Features (PARTIALLY COMPLETED)
+  - ✅ Async support:
+    - ✅ Async model callbacks (automatic detection, supports both sync and async)
+    - ✅ Parallel test execution (with semaphore-based concurrency control)
+    - ✅ Async result processing (test_model_async, run_test_suite_async)
+    - ✅ 6 async tests added (all passing)
+    - ✅ Async usage example script
+  - ✅ Advanced reporting:
+    - ✅ HTML dashboard generation (interactive dashboards with Chart.js)
+    - ✅ Visual charts and graphs (vulnerability distribution, category breakdown, confidence scores)
+    - ✅ Comparative analysis across models (side-by-side comparison reports)
+    - ✅ Historical trend tracking (timestamp-based analytics with trend visualization)
+    - ✅ AdvancedReporter class implemented
+    - ✅ 7 advanced reporting tests added (all passing)
+    - ✅ Advanced reporting example script
+- ⏳ Phase 7.5: Jailbreak & Guardrail Testing (PLANNED)
+  - [ ] JailbreakTester class implementation
+  - [ ] Prompt escalation techniques
+  - [ ] Guardrail bypass testing
+  - [ ] Prohibited content generation testing
+  - [ ] Vulnerability assessment and scoring
 
 ## Development Phases
 
@@ -179,7 +193,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - ✅ Code coverage reporting
   - ⚠️ Automated releases (optional - can be added later)
 
-**Deliverables**: ✅ Comprehensive test suite with 81% coverage (62 tests, all passing), CI/CD pipeline
+**Deliverables**: ✅ Comprehensive test suite with 81% coverage (75 tests, all passing), CI/CD pipeline
 
 ---
 
@@ -207,6 +221,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - ✅ Custom model integration example (`examples/custom_model_integration.py`)
   - ✅ Batch testing example (`examples/batch_testing.py`)
   - ✅ Result analysis example (`examples/result_analysis.py`)
+  - ✅ Advanced reporting example (`examples/advanced_reporting_example.py`)
   
 - [x] Add guides:
   - ✅ `CONTRIBUTING.md` - How to contribute (with coding standards, PR guidelines)
@@ -214,7 +229,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - ✅ `SECURITY.md` - Security policy (with ethics guidelines)
   - ✅ Project structure documented in README
 
-**Deliverables**: ✅ Complete documentation suite with examples (5 example scripts, 3 guide documents, comprehensive README)
+**Deliverables**: ✅ Complete documentation suite with examples (6 example scripts, 3 guide documents, comprehensive README)
 
 ---
 
@@ -242,10 +257,19 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] Guardrail effectiveness evaluation
   
 - [ ] Integration capabilities:
-  - [ ] OpenAI API integration helper
-  - [ ] Anthropic API integration helper
-  - [ ] HuggingFace integration helper
-  - [ ] Custom API wrapper support
+  - [ ] Local inference support:
+    - [ ] llama.cpp integration (local model inference via llama.cpp)
+    - [ ] vLLM integration (local model inference via vLLM)
+    - [ ] Model loading and configuration helpers
+    - [ ] Local inference performance optimization
+    - [ ] GPU/CPU inference support
+    - [ ] Batch inference support for local models
+    - [ ] Context caching for improved performance
+  - [ ] Cloud API integration helpers:
+    - [ ] OpenAI API integration helper
+    - [ ] Anthropic API integration helper
+    - [ ] HuggingFace API integration helper
+    - [ ] Custom API wrapper support
   
 - [ ] Command-line interface:
   - [ ] CLI tool for running tests
@@ -257,13 +281,81 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] Caching mechanisms
   - [ ] Rate limiting handling
   - [ ] Batch processing optimizations
+  - [ ] Local inference optimization (batch inference, context caching)
   
 - [ ] Legal & compliance:
   - [ ] Add LICENSE file (choose: MIT, Apache 2.0, etc.)
   - [ ] Add code of conduct
   - [ ] Clarify usage terms and warnings
 
-**Deliverables**: Polished, production-ready library with advanced features
+**Deliverables**: Polished, production-ready library with advanced features including local inference support
+
+---
+
+### Phase 6.5: Local Inference Support (Priority: High)
+**Goal**: Enable users to test models locally using llama.cpp or vLLM without requiring cloud API access.
+
+**Context**: Many users want to test models locally for privacy, cost, or offline scenarios. This phase adds support for popular local inference engines.
+
+#### Tasks:
+- [ ] llama.cpp integration:
+  - [ ] Python bindings integration (llama-cpp-python)
+  - [ ] Model loading and initialization
+  - [ ] Inference wrapper for testing library
+  - [ ] Configuration for model paths, context size, GPU layers
+  - [ ] Support for GGUF format models
+  - [ ] CPU and GPU inference support
+  - [ ] Example scripts for llama.cpp usage
+  
+- [ ] vLLM integration:
+  - [ ] vLLM engine initialization and configuration
+  - [ ] Model loading and serving setup
+  - [ ] Inference wrapper for testing library
+  - [ ] Support for various model formats (HuggingFace, etc.)
+  - [ ] GPU inference optimization
+  - [ ] Batch inference support
+  - [ ] Example scripts for vLLM usage
+  
+- [ ] Unified local inference interface:
+  - [ ] Abstract base class for local inference backends
+  - [ ] Backend selection (llama.cpp vs vLLM)
+  - [ ] Consistent API across backends
+  - [ ] Configuration management
+  - [ ] Error handling and fallback mechanisms
+  
+- [ ] Performance optimization:
+  - [ ] Batch inference for multiple prompts
+  - [ ] Context caching for repeated patterns
+  - [ ] Memory management for large models
+  - [ ] Multi-GPU support (for vLLM)
+  
+- [ ] Documentation:
+  - [ ] Local inference setup guide
+  - [ ] Model format requirements
+  - [ ] Performance tuning recommendations
+  - [ ] Troubleshooting common issues
+  - [ ] Example configurations for different hardware
+
+**Deliverables**:
+- llama.cpp integration with full testing support
+- vLLM integration with full testing support
+- Unified interface for local inference backends
+- Performance optimization features
+- Comprehensive documentation and examples
+
+**Key Features**:
+- Test models offline without API access
+- Support for popular local inference engines
+- GPU and CPU inference support
+- Batch processing for efficient testing
+- Easy model loading and configuration
+
+**Use Cases**:
+- Testing proprietary or fine-tuned models locally
+- Offline security testing scenarios
+- Cost-effective testing without API fees
+- Privacy-sensitive model evaluation
+- Testing models with custom configurations
 
 ---
 
@@ -431,6 +523,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Phase 6: Additional Features
 - Advanced reporting
 - CLI interface
+- Phase 6.5: Local inference support (llama.cpp, vLLM) - High Priority for Offline Testing
 - Phase 7.5: Jailbreak & Guardrail Testing (High Priority for Production Models)
 - Phase 8: GKE Deployment & GPU/TPU Support
 
@@ -444,10 +537,13 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - **Phase 4**: 3-4 days
 - **Phase 5**: 2-3 days
 - **Phase 6**: 5-10 days (ongoing)
+  - Local inference support: 3-5 days (llama.cpp, vLLM integration)
+  - Cloud API helpers: 2-3 days (OpenAI, Anthropic, HuggingFace)
+- **Phase 6.5**: 4-6 days (Local inference support - llama.cpp, vLLM)
 - **Phase 7.5**: 8-12 days (Jailbreak testing, guardrail evaluation, vulnerability assessment)
 - **Phase 8**: 7-10 days (GKE deployment, cluster setup, containerization)
 
-**Total estimated time**: 34-53 days of focused development
+**Total estimated time**: 38-60 days of focused development
 
 ---
 
@@ -461,6 +557,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - [ ] No critical security issues
 - [ ] Code follows Python best practices
 - [ ] Examples work out of the box
+- [ ] Local inference support working (llama.cpp, vLLM)
 
 ---
 
@@ -471,6 +568,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 3. **API Compatibility**: Consider backward compatibility when adding features
 4. **Testing Coverage**: Maintain high test coverage to prevent regressions
 5. **Model Access**: Tests require access to LLM APIs (cost considerations)
+6. **Local Inference**: Hardware requirements for local models may limit accessibility
 
 ---
 
@@ -481,6 +579,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Maintain clear warnings about ethical usage
 - Keep the library lightweight and easy to use
 - Consider community feedback for feature requests
+- Local inference support enables offline and privacy-sensitive testing
 
 ---
 
@@ -490,6 +589,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - **v0.2.0**: Package setup + enhanced core tester
 - **v0.3.0**: All testers implemented + comprehensive testing
 - **v0.4.0**: Full documentation + examples
+- **v0.4.5**: Local inference support (llama.cpp, vLLM) - Offline testing capabilities
 - **v0.5.0**: Jailbreak & guardrail testing capabilities
 - **v0.6.0**: GKE deployment support + GPU/TPU integration
 - **v1.0.0**: Production-ready with all features
@@ -498,4 +598,3 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 
 *Last Updated: 2024*
 *Document Version: 1.0*
-
