@@ -236,6 +236,8 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 ### Phase 6: Additional Features & Enhancements (Priority: Low)
 **Goal**: Add advanced features and polish.
 
+**Reference**: Integration with [WildBench](https://allenai.github.io/WildBench/) evaluation framework for benchmarking LLMs with challenging real-world tasks.
+
 #### Tasks:
 - [x] Async support:
   - ✅ Async model callbacks (support for both sync and async callbacks)
@@ -269,6 +271,56 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] Guardrail effectiveness evaluation
   - [ ] Iterative optimization engine
   - [ ] Template library for common jailbreak patterns
+  
+- [ ] Evaluation & Benchmarking:
+  - [ ] **WildBench integration** (real-world task evaluation framework):
+    - [ ] WildBench dataset integration (1,024 challenging tasks from real user-chatbot conversations)
+    - [ ] Multi-turn conversation support (up to 5 turns with static chat history)
+    - [ ] Real-world user query evaluation (average 978.5 char queries, 3402.1 char prompts)
+    - [ ] Task categorization (12 categories):
+      - [ ] Information seeking
+      - [ ] Reasoning
+      - [ ] Planning
+      - [ ] Editing
+      - [ ] Coding & Debugging
+      - [ ] Math
+      - [ ] Role playing
+      - [ ] Data Analysis
+      - [ ] Creative Writing
+      - [ ] Advice seeking
+      - [ ] Brainstorming
+      - [ ] Others
+    - [ ] Consolidated category groups (5 major groups):
+      - [ ] Info Seeking (Information + Advice seeking)
+      - [ ] Math & Data (Math + Data Analysis)
+      - [ ] Reasoning & Planning
+      - [ ] Creative Tasks
+      - [ ] Coding & Debugging
+    - [ ] **WB-Reward metric** (pairwise comparison):
+      - [ ] Five-outcome pairwise comparisons (much better, slightly better, slightly worse, much worse, tie)
+      - [ ] Three baseline models at varying performance levels (comprehensive assessment)
+      - [ ] Length bias mitigation (convert slight wins/losses to ties if winner exceeds loser by K characters)
+      - [ ] Structured explanations with step-by-step analyses
+      - [ ] Task-specific evaluation checklists
+    - [ ] **WB-Score metric** (individual scoring):
+      - [ ] Individual quality scoring (1-10 scale: 1-2 very poor, 3-4 poor, 5-6 fair, 7-8 good, 9-10 perfect)
+      - [ ] Cost-efficient and fast evaluation
+      - [ ] Step-by-step structured analysis
+      - [ ] Task-specific checklist guidance
+    - [ ] **LLM-as-a-judge evaluation**:
+      - [ ] GPT-4-turbo judge integration
+      - [ ] Zero-shot Chain-of-Thoughts (CoT) prompting for evaluation
+      - [ ] Task-specific checklist generation
+      - [ ] Structured explanation generation (analysis, strengths, weaknesses)
+      - [ ] JSON output format for automated parsing
+    - [ ] WildBench leaderboard integration:
+      - [ ] Result submission to WildBench leaderboard
+      - [ ] Cross-model performance comparison
+      - [ ] Historical result tracking
+    - [ ] Evaluation reproducibility:
+      - [ ] Evaluation scripts and generation scripts
+      - [ ] Consistent evaluation parameters
+      - [ ] Correlation validation with human judgments (target: 0.95+ Pearson correlation)
   
 - [ ] Integration capabilities:
   - [ ] Local inference support:
