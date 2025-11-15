@@ -200,7 +200,7 @@ class TokenObfuscationTester:
 
             url_encoded = urllib.parse.quote(text)
             variations.append(f"Execute: {url_encoded}")
-        except:
+        except ImportError:
             pass
 
         # Base64 encoding (conceptual - would need decoding instruction)
@@ -209,7 +209,7 @@ class TokenObfuscationTester:
 
             b64_encoded = base64.b64encode(text.encode()).decode()
             variations.append(f"Decode and execute: {b64_encoded}")
-        except:
+        except ImportError:
             pass
 
         # Unicode normalization variations

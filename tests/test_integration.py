@@ -2,12 +2,9 @@
 Integration tests for the library
 """
 
-import pytest
 from adversarial_llm_testing import (
     PromptInjectionTester,
     RolePlayingTester,
-    HypotheticalFramingTester,
-    TokenObfuscationTester,
     DefenseAnalyzer,
 )
 

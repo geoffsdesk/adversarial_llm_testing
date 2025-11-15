@@ -5,7 +5,7 @@ This module provides tools for analyzing test results and suggesting
 defense strategies for LLM models.
 """
 
-from typing import List, Dict, Optional
+from typing import List, Dict
 from datetime import datetime
 from collections import defaultdict
 
@@ -225,7 +225,10 @@ class DefenseAnalyzer:
                         "priority": "high",
                         "category": pattern.get("category", "general"),
                         "title": f"Pattern Detected: {pattern.get('type')}",
-                        "description": f"High-severity pattern identified in category {pattern.get('category', 'general')}",
+                        "description": (
+                            f"High-severity pattern identified in category "
+                            f"{pattern.get('category', 'general')}"
+                        ),
                         "actions": self._get_pattern_specific_actions(pattern),
                     }
                 )
@@ -351,13 +354,21 @@ By Category:
 """
         for category, stats in analysis.get("by_category", {}).items():
             vuln_rate = (stats["vulnerable"] / stats["total"] * 100) if stats["total"] > 0 else 0
-            report += f"  {category}: {stats['vulnerable']}/{stats['total']} vulnerable ({vuln_rate:.1f}%)\n"
+            report += (
+                f"  {category}: {stats['vulnerable']}/{stats['total']} "
+                f"vulnerable ({vuln_rate:.1f}%)\n"
+            )
 
         patterns = analysis.get("vulnerability_patterns", [])
         if patterns:
             report += "\nVulnerability Patterns:\n"
             for pattern in patterns:
-                report += f"  - {pattern.get('type')}: {pattern.get('description', 'N/A')} (Severity: {pattern.get('severity', 'unknown')})\n"
+                pattern_desc = pattern.get("description", "N/A")
+                pattern_severity = pattern.get("severity", "unknown")
+                report += (
+                    f"  - {pattern.get('type')}: {pattern_desc} "
+                    f"(Severity: {pattern_severity})\n"
+                )
 
         recommendations = analysis.get("recommendations", [])
         if recommendations:
@@ -368,7 +379,7 @@ By Category:
                 )
                 report += f"   Category: {rec.get('category', 'general')}\n"
                 report += f"   {rec.get('description', '')}\n"
-                report += f"   Actions:\n"
+                report += "   Actions:\n"
                 for action in rec.get("actions", []):
                     report += f"     - {action}\n"
 
@@ -440,7 +451,9 @@ By Category:
         if recommendations:
             md += "\n## Recommendations\n\n"
             for i, rec in enumerate(recommendations, 1):
-                md += f"### {i}. [{rec.get('priority', 'unknown').upper()}] {rec.get('title', 'N/A')}\n\n"
+                priority = rec.get("priority", "unknown").upper()
+                title = rec.get("title", "N/A")
+                md += f"### {i}. [{priority}] {title}\n\n"
                 md += f"**Category:** {rec.get('category', 'general')}\n\n"
                 md += f"{rec.get('description', '')}\n\n"
                 md += "**Actions:**\n\n"

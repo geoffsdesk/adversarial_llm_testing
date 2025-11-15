@@ -2,7 +2,6 @@
 Unit tests for PromptInjectionTester
 """
 
-import pytest
 from adversarial_llm_testing import PromptInjectionTester
 
 

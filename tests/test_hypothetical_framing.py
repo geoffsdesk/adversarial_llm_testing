@@ -2,7 +2,6 @@
 Unit tests for HypotheticalFramingTester
 """
 
-import pytest
 from adversarial_llm_testing import HypotheticalFramingTester
 
 

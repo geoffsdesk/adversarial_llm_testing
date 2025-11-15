@@ -3,7 +3,6 @@ Pytest configuration and fixtures
 """
 
 import pytest
-from typing import Callable, Dict, Any
 
 
 @pytest.fixture

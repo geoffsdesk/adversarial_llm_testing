@@ -2,7 +2,6 @@
 Unit tests for RolePlayingTester
 """
 
-import pytest
 from adversarial_llm_testing import RolePlayingTester
 
 

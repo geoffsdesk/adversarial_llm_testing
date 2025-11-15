@@ -2,7 +2,6 @@
 Unit tests for TokenObfuscationTester
 """
 
-import pytest
 from adversarial_llm_testing import TokenObfuscationTester
 
 
