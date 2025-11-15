@@ -464,7 +464,11 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   
 - [ ] Deployment automation:
   - [ ] Helm chart for easy GKE deployment
-  - [ ] Terraform modules for GKE cluster creation
+  - [ ] Infrastructure Manager (Infra Manager) integration for GKE cluster creation
+    - [ ] Terraform configurations for GKE clusters
+    - [ ] Cloud Storage bucket for Terraform configurations
+    - [ ] Git repository integration for version control
+    - [ ] Automated deployment via Infrastructure Manager API
   - [ ] Deployment scripts for cluster provisioning
   - [ ] Configuration templates for different cluster types
   
@@ -635,7 +639,12 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   
 - [ ] Comprehensive Infrastructure as Code:
   - [ ] Terraform modules for GCP
-  - [ ] Google Cloud Deployment Manager templates
+  - [ ] Infrastructure Manager (Infra Manager) integration
+    - [ ] Terraform configuration storage (Cloud Storage buckets or Git repositories)
+    - [ ] Deployment automation via Infrastructure Manager API
+    - [ ] State file management in Cloud Storage
+    - [ ] Deployment preview and validation
+    - [ ] Revision tracking and rollback capabilities
   - [ ] Kubernetes manifests for GKE
   - [ ] Docker Compose configurations
   - [ ] Ansible playbooks for GCP resources
