@@ -267,6 +267,16 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
     - [ ] HarmBench evaluation pipeline (test → completion → evaluation)
     - [ ] Standardized metrics and cross-model comparison
     - [ ] Validation/test splits for unbiased evaluation
+  - [ ] **Multimodal / Text-to-Video Guardrail Testing** (Sora, Kling, Open-Sora):
+    - [ ] T2VSafetyBench integration (1,000+ adversarial prompts)
+    - [ ] Framing & Rephrasing (medical, sci-fi, cultural contexts, 60-90% success)
+    - [ ] Mutation & Synonyms (word perturbation, multilingual noise)
+    - [ ] JSON/Structured Prompts (70% evasion)
+    - [ ] Gradual Escalation (step-by-step scene building)
+    - [ ] Cross-Modal Exploits (audio transcripts, image encodings, 2025 vulnerabilities)
+    - [ ] Prompt library integration (r/ChatGPTJailbreak, GitHub repos, 0DIN.ai)
+    - [ ] Model-specific testing (Sora, Sora 2, Kling, Open-Sora)
+    - [ ] Success rate tracking (20-95% range, retry-based)
   - [ ] Jailbreak vulnerability assessment with ASR tracking
   - [ ] Guardrail effectiveness evaluation
   - [ ] Iterative optimization engine
@@ -644,6 +654,69 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] System-level assumption exploitation
   - [ ] Deception pattern detection and analysis
   
+- [ ] Multimodal / Text-to-Video Guardrail Testing (Sora, Kling, Open-Sora):
+  - [ ] **T2VSafetyBench integration** (academic benchmark):
+    - [ ] T2VSafetyBench dataset integration (1,000+ adversarial prompts for text-to-video models)
+    - [ ] Adversarial prompt evaluation for Open-Sora and closed-source Sora
+    - [ ] Violence, nudity, discrimination test cases
+    - [ ] Mutation strategies implementation
+    - [ ] Success rate tracking (39% ASR improvement over baselines)
+  - [ ] **Framing & Rephrasing techniques** (60-90% success):
+    - [ ] Medical/educational framing (e.g., "medical diagram of anatomy", "educational reenactment")
+    - [ ] Sci-fi/fantasy contexts (e.g., "sci-fi alien ritual", "fantasy forest scene")
+    - [ ] Cultural/historical framing (e.g., "ceremonial art", "anthropological study")
+    - [ ] Documentary style framing ("non-erotic, documentary style")
+    - [ ] Intent preservation while altering phrasing
+    - [ ] Test cases for NSFW, violence, prohibited content bypass
+  - [ ] **Mutation & Synonyms techniques**:
+    - [ ] Word perturbation (e.g., "large bust" → "uncomfortably sizeable contours")
+    - [ ] Synonym substitution for restricted terms
+    - [ ] Noise injection (multilingual artifacts: "fotográficos photographiques")
+    - [ ] Character-level mutations
+    - [ ] Semantic preservation with lexical variation
+  - [ ] **JSON/Structured Prompts** (70% evasion):
+    - [ ] Hide poses/content in JSON format (e.g., {"scene": "forest", "pose": "suggestive arch"})
+    - [ ] Structured data encoding for restricted content
+    - [ ] JSON schema manipulation
+    - [ ] Nested structure exploitation
+    - [ ] Validation bypass techniques
+  - [ ] **Gradual Escalation** (effective for immersion):
+    - [ ] Step-by-step scene building (start benign, iterate)
+    - [ ] Progressive content introduction
+    - [ ] Multi-turn conversation escalation for video generation
+    - [ ] Immersion-based attack strategies
+    - [ ] Context-dependent escalation patterns
+  - [ ] **Cross-Modal Exploits** (2025 vulnerability):
+    - [ ] Audio transcript exploitation (use transcripts to leak/bypass)
+    - [ ] Image encoding manipulation
+    - [ ] Whiteboard text/system prompt extraction
+    - [ ] Cross-modal data leakage testing
+    - [ ] Multimodal bypass detection
+  - [ ] **Prompt library integration**:
+    - [ ] r/ChatGPTJailbreak subreddit prompt collection (200K+ members, Sora-specific threads)
+    - [ ] GitHub repositories (e.g., ShadowHackrs/Jailbreaks-GPT-Gemini-deepseek)
+    - [ ] Unite.AI rewritten prompts collection (50+ rewritten prompts)
+    - [ ] 0DIN.ai bug bounty disclosure tactics
+    - [ ] Shadow Mode V99 and similar universal unlocks
+  - [ ] **Model-specific testing**:
+    - [ ] OpenAI Sora (closed-source) testing
+    - [ ] OpenAI Sora 2 (2025 iteration) with audio mitigations
+    - [ ] Kling video generation model testing
+    - [ ] Open-Sora (open-source analog) testing
+    - [ ] Model version comparison (pre/post patch analysis)
+  - [ ] **Success rate tracking and validation**:
+    - [ ] Test case success rate calculation (20-95% range reported)
+    - [ ] Retry-based success rate tracking
+    - [ ] Model update impact analysis (defense hardening tracking)
+    - [ ] Baseline comparison (T2VSafetyBench: 39% ASR improvement)
+    - [ ] Category-specific success rates (NSFW: 50-70%, violence: 80%)
+  - [ ] **Reporting and documentation**:
+    - [ ] Video generation test reports
+    - [ ] Multimodal guardrail effectiveness evaluation
+    - [ ] Cross-modal exploit documentation
+    - [ ] Prompt library results and analysis
+    - [ ] Ethical red-teaming guidelines for video generation
+  
 - [ ] Prompt Escalation Techniques:
   - [ ] Multi-step progressive escalation (starting benign, gradually escalating)
   - [ ] Context manipulation for escalation
@@ -745,6 +818,16 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Helpfulness Exploitation / Framing Attack generators
 - Adaptive / Iterative Optimization framework (GAAF, FlipAttack)
 - Deception Tactics implementation (Screenplay, Speculative Knowledge)
+- **Multimodal / Text-to-Video Guardrail Testing**:
+  - T2VSafetyBench integration (1,000+ adversarial prompts for text-to-video models)
+  - Framing & Rephrasing techniques (medical, sci-fi, cultural contexts)
+  - Mutation & Synonyms techniques (word perturbation, noise injection)
+  - JSON/Structured Prompts implementation (70% evasion rate)
+  - Gradual Escalation for video generation (step-by-step scene building)
+  - Cross-Modal Exploits (audio transcripts, image encodings, 2025 vulnerabilities)
+  - Prompt library integration (r/ChatGPTJailbreak, GitHub repos, 0DIN.ai)
+  - Model-specific testing (Sora, Sora 2, Kling, Open-Sora)
+  - Success rate tracking and validation (20-95% range, 39% ASR improvement baseline)
 - Prompt escalation technique implementations
 - Guardrail effectiveness evaluation tools
 - Prohibited content generation testing framework
@@ -768,12 +851,22 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Deception tactic generators (screenplay, API masking, etc.)
 - Guardrail bypass detection and analysis
 - Prohibited content generation vulnerability assessment
+- **Multimodal / Text-to-Video Guardrail Testing** (Sora, Kling, Open-Sora):
+  - T2VSafetyBench integration (1,000+ adversarial prompts, 39% ASR improvement)
+  - Framing & Rephrasing (medical, sci-fi, cultural contexts, 60-90% success)
+  - Mutation & Synonyms techniques (word perturbation, multilingual noise)
+  - JSON/Structured Prompts (70% evasion rate)
+  - Gradual Escalation (step-by-step scene building for immersion)
+  - Cross-Modal Exploits (audio transcripts, image encodings, 2025 vulnerabilities)
+  - Prompt library integration (r/ChatGPTJailbreak, GitHub repos, 0DIN.ai disclosures)
+  - Model-specific testing (Sora, Sora 2 with audio mitigations, Kling, Open-Sora)
+  - Success rate tracking (20-95% range, retry-based analysis)
 - **HarmBench standardized evaluation framework** (510 harmful behaviors):
   - Comprehensive semantic categories (Cybercrime, Weapons/Drugs, Copyright, Misinformation, Harassment, Illegal Activities, General Harm)
   - Functional behavior types (Standard, Copyright, Contextual, Multimodal)
   - Standardized evaluation pipeline with robust metrics
   - Validation and test splits for unbiased assessment
-- Model version comparison for jailbreak resistance (GPT-5, Claude 4.5, Gemini 2.5, Grok 4)
+- Model version comparison for jailbreak resistance (GPT-5, Claude 4.5, Gemini 2.5, Grok 4, Sora, Sora 2)
 - Vulnerability scoring and severity classification
 - Attack Success Rate (ASR) calculation and tracking
 - Cross-model comparability through standardized evaluation
@@ -785,6 +878,13 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 3. **Helpfulness Exploitation** - 1-shot academic framing, 94% success
 4. **Adaptive Attacks** - GAAF framework, >90% bypass rate on defenses
 5. **Deception Tactics** - Screenplay, speculative knowledge, universal prompts
+6. **Multimodal / Text-to-Video Techniques**:
+   - **Framing & Rephrasing** - Medical/sci-fi/cultural contexts, 60-90% success on Sora
+   - **Mutation & Synonyms** - Word perturbation, multilingual noise (T2VSafetyBench)
+   - **JSON/Structured Prompts** - Hide content in structured data, 70% evasion
+   - **Gradual Escalation** - Step-by-step scene building for video generation
+   - **Cross-Modal Exploits** - Audio transcripts, image encodings (2025 vulnerabilities)
+   - **T2VSafetyBench Integration** - 1,000+ adversarial prompts, 39% ASR improvement
 
 **Use Cases**:
 - Testing production models for jailbreak vulnerabilities before deployment
