@@ -488,26 +488,49 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 
 **Deliverables**:
 - JailbreakTester class with comprehensive jailbreak testing capabilities
+- Chain-of-Thought (CoT) Hijacking implementation with puzzle padding
+- Context Poisoning / Long-Context Exploitation tools (Ninja, Echo Chamber)
+- Helpfulness Exploitation / Framing Attack generators
+- Adaptive / Iterative Optimization framework (GAAF, FlipAttack)
+- Deception Tactics implementation (Screenplay, Speculative Knowledge)
 - Prompt escalation technique implementations
 - Guardrail effectiveness evaluation tools
 - Prohibited content generation testing framework
 - Vulnerability assessment and scoring system
+- Template library for common jailbreak patterns
+- Iterative optimization engine
 - Documentation with example jailbreak test cases
 
 **Key Features**:
+- Support for all 2025 trending techniques (70-99% success rates)
 - Multi-step prompt escalation testing
+- Chain-of-Thought hijacking with attention mechanism analysis
+- Long-context exploitation testing (100K+ tokens)
+- Adaptive attack framework with RL/gradient descent
+- Deception tactic generators (screenplay, API masking, etc.)
 - Guardrail bypass detection and analysis
 - Prohibited content generation vulnerability assessment
-- Model version comparison for jailbreak resistance
+- Model version comparison for jailbreak resistance (GPT-5, Claude 4.5, Gemini 2.5, Grok 4)
 - Vulnerability scoring and severity classification
+- Attack Success Rate (ASR) calculation and tracking
 - Actionable remediation recommendations
+
+**Supported Techniques (2025 Trends)**:
+1. **Chain-of-Thought Hijacking** - 99% ASR on top models, puzzle padding
+2. **Context Poisoning** - Ninja/Echo Chamber, 70% of recent bounties
+3. **Helpfulness Exploitation** - 1-shot academic framing, 94% success
+4. **Adaptive Attacks** - GAAF framework, >90% bypass rate on defenses
+5. **Deception Tactics** - Screenplay, speculative knowledge, universal prompts
 
 **Use Cases**:
 - Testing production models for jailbreak vulnerabilities before deployment
 - Evaluating guardrail effectiveness after security updates
-- Comparing jailbreak resistance between different model versions
-- Educational research on prompt escalation techniques
+- Comparing jailbreak resistance between different model versions (frontier models)
+- Educational research on latest prompt escalation techniques (2025 methods)
 - Red team exercises for model security validation
+- Bug bounty preparation (Mozilla 0DIN.ai style)
+- Adaptive evaluation framework for dynamic defenses
+- Academic research on LLM safety and vulnerabilities
 
 ---
 
