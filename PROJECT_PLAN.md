@@ -1498,8 +1498,11 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - **Phase 7.5**: 8-12 days (Jailbreak testing, guardrail evaluation, vulnerability assessment)
 - **Phase 8**: 7-10 days (GKE deployment, cluster setup, containerization)
 - **Phase 9**: 15-25 days (PyRIT feature parity, REST API, database backend, multi-turn testing, orchestrators, documentation website)
+- **Phase 10**: 20-30 days (Frontier Security Research Model - training, evaluation, deployment)
+- **Phase 11**: 15-20 days (Agentic Testing Processes & Specialized Models - multi-agent framework, specialized agents)
+- **Phase 12**: 20-30 days (MoE Integration & Orchestration - expert routing, unified connection, test orchestration)
 
-**Total estimated time**: 53-85 days of focused development
+**Total estimated time**: 113-165 days of focused development (including advanced phases)
 
 ---
 
