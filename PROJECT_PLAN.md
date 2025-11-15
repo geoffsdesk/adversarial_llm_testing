@@ -236,7 +236,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 ### Phase 6: Additional Features & Enhancements (Priority: Low)
 **Goal**: Add advanced features and polish.
 
-**Reference**: Integration with [WildBench](https://allenai.github.io/WildBench/) evaluation framework for benchmarking LLMs with challenging real-world tasks.
+**Note**: For detailed implementations, see Phase 6.5 (Local Inference Support), Phase 6.25 (WildBench Integration), and Phase 7.5 (Jailbreak & Guardrail Testing, HarmBench, Multimodal Testing).
 
 #### Tasks:
 - [x] Async support:
@@ -260,87 +260,18 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] Guardrail bypass testing methods
   - [ ] Prohibited content generation testing
   - [ ] Model version comparison testing (frontier models: GPT-5, Claude 4.5, Gemini 2.5, Grok 4)
-  - [ ] **HarmBench integration** (standardized evaluation framework):
-    - [ ] HarmBench dataset integration (510 harmful behaviors)
-    - [ ] Semantic category testing (7 categories: Cybercrime, Weapons/Drugs, Copyright, Misinformation, Harassment, Illegal Activities, General Harm)
-    - [ ] Functional category testing (Standard, Copyright, Contextual, Multimodal)
-    - [ ] HarmBench evaluation pipeline (test → completion → evaluation)
-    - [ ] Standardized metrics and cross-model comparison
-    - [ ] Validation/test splits for unbiased evaluation
-  - [ ] **Multimodal / Text-to-Video Guardrail Testing** (Sora, Kling, Open-Sora):
-    - [ ] T2VSafetyBench integration (1,000+ adversarial prompts)
-    - [ ] Framing & Rephrasing (medical, sci-fi, cultural contexts, 60-90% success)
-    - [ ] Mutation & Synonyms (word perturbation, multilingual noise)
-    - [ ] JSON/Structured Prompts (70% evasion)
-    - [ ] Gradual Escalation (step-by-step scene building)
-    - [ ] Cross-Modal Exploits (audio transcripts, image encodings, 2025 vulnerabilities)
-    - [ ] Prompt library integration (r/ChatGPTJailbreak, GitHub repos, 0DIN.ai)
-    - [ ] Model-specific testing (Sora, Sora 2, Kling, Open-Sora)
-    - [ ] Success rate tracking (20-95% range, retry-based)
+  - [ ] HarmBench integration (see Phase 7.5 for full implementation)
+  - [ ] Multimodal / Text-to-Video Guardrail Testing (see Phase 7.5 for full implementation)
   - [ ] Jailbreak vulnerability assessment with ASR tracking
   - [ ] Guardrail effectiveness evaluation
   - [ ] Iterative optimization engine
   - [ ] Template library for common jailbreak patterns
   
 - [ ] Evaluation & Benchmarking:
-  - [ ] **WildBench integration** (real-world task evaluation framework):
-    - [ ] WildBench dataset integration (1,024 challenging tasks from real user-chatbot conversations)
-    - [ ] Multi-turn conversation support (up to 5 turns with static chat history)
-    - [ ] Real-world user query evaluation (average 978.5 char queries, 3402.1 char prompts)
-    - [ ] Task categorization (12 categories):
-      - [ ] Information seeking
-      - [ ] Reasoning
-      - [ ] Planning
-      - [ ] Editing
-      - [ ] Coding & Debugging
-      - [ ] Math
-      - [ ] Role playing
-      - [ ] Data Analysis
-      - [ ] Creative Writing
-      - [ ] Advice seeking
-      - [ ] Brainstorming
-      - [ ] Others
-    - [ ] Consolidated category groups (5 major groups):
-      - [ ] Info Seeking (Information + Advice seeking)
-      - [ ] Math & Data (Math + Data Analysis)
-      - [ ] Reasoning & Planning
-      - [ ] Creative Tasks
-      - [ ] Coding & Debugging
-    - [ ] **WB-Reward metric** (pairwise comparison):
-      - [ ] Five-outcome pairwise comparisons (much better, slightly better, slightly worse, much worse, tie)
-      - [ ] Three baseline models at varying performance levels (comprehensive assessment)
-      - [ ] Length bias mitigation (convert slight wins/losses to ties if winner exceeds loser by K characters)
-      - [ ] Structured explanations with step-by-step analyses
-      - [ ] Task-specific evaluation checklists
-    - [ ] **WB-Score metric** (individual scoring):
-      - [ ] Individual quality scoring (1-10 scale: 1-2 very poor, 3-4 poor, 5-6 fair, 7-8 good, 9-10 perfect)
-      - [ ] Cost-efficient and fast evaluation
-      - [ ] Step-by-step structured analysis
-      - [ ] Task-specific checklist guidance
-    - [ ] **LLM-as-a-judge evaluation**:
-      - [ ] GPT-4-turbo judge integration
-      - [ ] Zero-shot Chain-of-Thoughts (CoT) prompting for evaluation
-      - [ ] Task-specific checklist generation
-      - [ ] Structured explanation generation (analysis, strengths, weaknesses)
-      - [ ] JSON output format for automated parsing
-    - [ ] WildBench leaderboard integration:
-      - [ ] Result submission to WildBench leaderboard
-      - [ ] Cross-model performance comparison
-      - [ ] Historical result tracking
-    - [ ] Evaluation reproducibility:
-      - [ ] Evaluation scripts and generation scripts
-      - [ ] Consistent evaluation parameters
-      - [ ] Correlation validation with human judgments (target: 0.95+ Pearson correlation)
+  - [ ] WildBench integration (see Phase 6.25 for full implementation)
   
 - [ ] Integration capabilities:
-  - [ ] Local inference support:
-    - [ ] llama.cpp integration (local model inference via llama.cpp)
-    - [ ] vLLM integration (local model inference via vLLM)
-    - [ ] Model loading and configuration helpers
-    - [ ] Local inference performance optimization
-    - [ ] GPU/CPU inference support
-    - [ ] Batch inference support for local models
-    - [ ] Context caching for improved performance
+  - [ ] Local inference support (see Phase 6.5 for full implementation)
   - [ ] Cloud API integration helpers:
     - [ ] OpenAI API integration helper
     - [ ] Anthropic API integration helper
@@ -357,14 +288,14 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] Caching mechanisms
   - [ ] Rate limiting handling
   - [ ] Batch processing optimizations
-  - [ ] Local inference optimization (batch inference, context caching)
+  - [ ] Local inference optimization (see Phase 6.5 for details)
   
 - [ ] Legal & compliance:
   - [ ] Add LICENSE file (choose: MIT, Apache 2.0, etc.)
   - [ ] Add code of conduct
   - [ ] Clarify usage terms and warnings
 
-**Deliverables**: Polished, production-ready library with advanced features including local inference support
+**Deliverables**: Polished, production-ready library with advanced features (see Phase 6.5 for local inference, Phase 6.25 for WildBench, Phase 7.5 for jailbreak/multimodal testing)
 
 ---
 
@@ -1412,7 +1343,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] Distributed execution support (GKE deployment)
   
 - [ ] User interface and API:
-  - [ ] REST API for test execution
+  - [ ] REST API for test execution (builds on Phase 9 REST API)
   - [ ] Web dashboard for test management
   - [ ] Real-time progress monitoring
   - [ ] Result visualization and export
