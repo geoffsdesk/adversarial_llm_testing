@@ -259,6 +259,84 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 
 ---
 
+### Phase 7: GKE Deployment & GPU/TPU Support (Priority: Medium)
+**Goal**: Enable easy deployment and execution of adversarial LLM testing on Google Kubernetes Engine (GKE) with GPU and TPU support for high-performance model inference.
+
+**Reference**: [GKE AI Hypercomputer Documentation](https://docs.cloud.google.com/ai-hypercomputer/docs/create/gke-ai-hypercompute-custom)
+
+#### Tasks:
+- [ ] GKE cluster configuration:
+  - [ ] Create Kubernetes manifests for A3 Ultra cluster type (NVIDIA H200 GPUs)
+  - [ ] Create Kubernetes manifests for A4x cluster type (NVIDIA B200 GPUs)
+  - [ ] Support for GPUDirect RDMA networking configuration
+  - [ ] Configure NCCL/gIB networking for distributed workloads
+  - [ ] Cluster setup automation scripts/tooling
+  
+- [ ] Container images:
+  - [ ] Create Dockerfile for testing library with CUDA support
+  - [ ] Build and publish container images to GCR/Artifact Registry
+  - [ ] Support for Python dependencies with GPU libraries
+  - [ ] Include required NCCL and GPU drivers
+  
+- [ ] Kubernetes deployment manifests:
+  - [ ] Deployment manifests for running tests on GPU nodes
+  - [ ] Pod specifications with GPU resource requests (nvidia.com/gpu)
+  - [ ] ConfigMaps for test configuration
+  - [ ] PersistentVolumeClaims for result storage
+  - [ ] Service accounts and RBAC configurations
+  
+- [ ] GPU/TPU integration:
+  - [ ] Example Pod specs for A3 Ultra (H200 GPUs, 8 GPUs per node)
+  - [ ] Example Pod specs for A4x (B200 GPUs, 8 GPUs per node)
+  - [ ] Volume mounts for GPU libraries (/usr/local/nvidia, /usr/local/gib)
+  - [ ] NCCL environment configuration
+  - [ ] LD_LIBRARY_PATH setup for GPU libraries
+  
+- [ ] Deployment automation:
+  - [ ] Helm chart for easy GKE deployment
+  - [ ] Terraform modules for GKE cluster creation
+  - [ ] Deployment scripts for cluster provisioning
+  - [ ] Configuration templates for different cluster types
+  
+- [ ] Model inference support:
+  - [ ] Integration examples for GPU-accelerated inference
+  - [ ] Support for distributed inference across multiple GPUs
+  - [ ] Examples using vLLM, TensorRT-LLM, or other GPU inference engines
+  - [ ] Performance optimization configurations
+  
+- [ ] Documentation:
+  - [ ] GKE deployment guide
+  - [ ] Cluster configuration reference
+  - [ ] GPU/TPU setup instructions
+  - [ ] Troubleshooting guide for GKE-specific issues
+  - [ ] Example workflows for A3 Ultra and A4x clusters
+  
+- [ ] Testing:
+  - [ ] Integration tests for GKE deployments
+  - [ ] Validation scripts for cluster configuration
+  - [ ] Test GPU availability and NCCL setup
+  - [ ] Verify RDMA networking configuration
+
+**Deliverables**: 
+- Complete GKE deployment tooling for A3 Ultra and A4x cluster types
+- Container images with GPU support
+- Kubernetes manifests and Helm charts
+- Comprehensive deployment documentation
+- Example configurations for GPU-accelerated inference
+
+**Cluster Types Supported**:
+- **A3 Ultra**: NVIDIA H200 (141GB) GPUs, ideal for large model inference
+- **A4x**: NVIDIA B200 (180GB) GPUs, high-performance inference and training
+
+**Key Features**:
+- GPUDirect RDMA support for low-latency inter-GPU communication
+- NCCL/gIB optimized networking
+- Automatic GPU library configuration
+- Support for distributed multi-GPU workloads
+- Result persistence and export from GKE pods
+
+---
+
 ## Prioritization Matrix
 
 ### Must Have (v0.2.0)
@@ -275,6 +353,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Phase 6: Additional Features
 - Advanced reporting
 - CLI interface
+- Phase 7: GKE Deployment & GPU/TPU Support
 
 ---
 
@@ -286,8 +365,9 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - **Phase 4**: 3-4 days
 - **Phase 5**: 2-3 days
 - **Phase 6**: 5-10 days (ongoing)
+- **Phase 7**: 7-10 days (GKE deployment, cluster setup, containerization)
 
-**Total estimated time**: 19-31 days of focused development
+**Total estimated time**: 26-41 days of focused development
 
 ---
 
@@ -330,6 +410,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - **v0.2.0**: Package setup + enhanced core tester
 - **v0.3.0**: All testers implemented + comprehensive testing
 - **v0.4.0**: Full documentation + examples
+- **v0.5.0**: GKE deployment support + GPU/TPU integration
 - **v1.0.0**: Production-ready with all features
 
 ---
