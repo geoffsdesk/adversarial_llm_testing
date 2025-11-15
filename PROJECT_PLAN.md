@@ -510,7 +510,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 ### Phase 9: PyRIT Feature Parity & Enterprise Features (Priority: High)
 **Goal**: Achieve feature parity with [PyRIT](https://github.com/Azure/PyRIT) and add enterprise-grade features to match or exceed PyRIT's capabilities.
 
-**Context**: PyRIT is a mature, enterprise-grade framework with 3.1k+ stars, comprehensive features, and extensive documentation. This phase addresses feature gaps and enterprise requirements.
+**Context**: PyRIT (Python Risk Identification Tool by Microsoft Azure) is a mature, enterprise-grade framework with 3.1k+ stars, comprehensive features, and extensive documentation. This phase addresses feature gaps and enterprise requirements, with implementations optimized for Google Cloud Platform (GCP) and GKE.
 
 #### Comparison with PyRIT:
 
