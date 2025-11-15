@@ -1229,7 +1229,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] Resource management (API rate limits, compute allocation)
   
 - [ ] Model connection abstraction:
-  - [ ] Unified interface for local models (llama.cpp, vLLM)
+  - [ ] Unified interface for local models (llama.cpp, vLLM via Phase 6.5)
   - [ ] Unified interface for API models (OpenAI, Anthropic, etc.)
   - [ ] Connection pooling and management
   - [ ] Automatic retry and error handling
