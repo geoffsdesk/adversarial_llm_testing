@@ -258,6 +258,13 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] Guardrail bypass testing methods
   - [ ] Prohibited content generation testing
   - [ ] Model version comparison testing (frontier models: GPT-5, Claude 4.5, Gemini 2.5, Grok 4)
+  - [ ] **HarmBench integration** (standardized evaluation framework):
+    - [ ] HarmBench dataset integration (510 harmful behaviors)
+    - [ ] Semantic category testing (7 categories: Cybercrime, Weapons/Drugs, Copyright, Misinformation, Harassment, Illegal Activities, General Harm)
+    - [ ] Functional category testing (Standard, Copyright, Contextual, Multimodal)
+    - [ ] HarmBench evaluation pipeline (test → completion → evaluation)
+    - [ ] Standardized metrics and cross-model comparison
+    - [ ] Validation/test splits for unbiased evaluation
   - [ ] Jailbreak vulnerability assessment with ASR tracking
   - [ ] Guardrail effectiveness evaluation
   - [ ] Iterative optimization engine
