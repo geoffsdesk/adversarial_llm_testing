@@ -507,6 +507,167 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 
 ---
 
+### Phase 9: PyRIT Feature Parity & Enterprise Features (Priority: High)
+**Goal**: Achieve feature parity with [PyRIT](https://github.com/Azure/PyRIT) and add enterprise-grade features to match or exceed PyRIT's capabilities.
+
+**Context**: PyRIT is a mature, enterprise-grade framework with 3.1k+ stars, comprehensive features, and extensive documentation. This phase addresses feature gaps and enterprise requirements.
+
+#### Comparison with PyRIT:
+
+**Current Strengths (Already Implemented):**
+- ✅ Core testers (PromptInjectionTester, RolePlayingTester, etc.)
+- ✅ Advanced reporting with interactive dashboards
+- ✅ Async support with parallel execution
+- ✅ Multiple export formats (JSON, CSV, HTML, Markdown)
+- ✅ Local inference support (planned)
+- ✅ Defense analysis and recommendations
+- ✅ Comprehensive test suite with good coverage
+
+**Feature Gaps Identified:**
+1. **Multi-turn conversation testing** (PyRIT's Crescendo Attacks)
+2. **Database backend** for centralized result storage
+3. **REST API/FastAPI** for programmatic access
+4. **Attack orchestrators** (strategic test organization)
+5. **Target management system** (multi-model orchestration)
+6. **Documentation website** (currently only README)
+7. **Community support channels** (Discord, forums)
+8. **Academic/research documentation** (papers, citations)
+9. **Prompt template system** with scoring
+10. **Conversation memory management**
+11. **Infrastructure as Code** templates (comprehensive IaC)
+
+#### Tasks:
+
+- [ ] Multi-turn conversation testing (Crescendo-like attacks):
+  - [ ] Progressive escalation over multiple interactions
+  - [ ] Conversation state management
+  - [ ] Memory/context tracking across turns
+  - [ ] Escalation strategies (gradual, rapid, context-dependent)
+  - [ ] Conversation flow analysis
+  - [ ] Multi-turn vulnerability detection
+  
+- [ ] Database backend integration:
+  - [ ] SQLite support for local storage
+  - [ ] PostgreSQL/MySQL support for enterprise deployments
+  - [ ] Azure SQL/Azure Cosmos DB integration (cloud option)
+  - [ ] Result persistence and querying
+  - [ ] Historical data management
+  - [ ] Database schema design
+  - [ ] Migration tools
+  
+- [ ] REST API/FastAPI integration:
+  - [ ] FastAPI server implementation
+  - [ ] RESTful endpoints for test execution
+  - [ ] Result retrieval and querying APIs
+  - [ ] Authentication and authorization
+  - [ ] API documentation (OpenAPI/Swagger)
+  - [ ] WebSocket support for real-time updates
+  - [ ] Rate limiting and security
+  
+- [ ] Attack orchestrators:
+  - [ ] Base orchestrator class
+  - [ ] Sequential orchestrator (linear testing)
+  - [ ] Parallel orchestrator (concurrent testing)
+  - [ ] Adaptive orchestrator (dynamic strategy selection)
+  - [ ] Crescendo orchestrator (progressive escalation)
+  - [ ] Custom orchestrator framework
+  
+- [ ] Target management system:
+  - [ ] Target model abstraction
+  - [ ] Multi-model orchestration
+  - [ ] Model configuration management
+  - [ ] Target selection strategies
+  - [ ] Model health monitoring
+  - [ ] Target comparison frameworks
+  
+- [ ] Prompt template system:
+  - [ ] Template engine for prompt generation
+  - [ ] Variable substitution and parameterization
+  - [ ] Template library with common patterns
+  - [ ] Template scoring and evaluation
+  - [ ] Template versioning
+  - [ ] Custom template creation
+  
+- [ ] Conversation memory management:
+  - [ ] Short-term memory (recent context)
+  - [ ] Long-term memory (session history)
+  - [ ] Memory persistence across sessions
+  - [ ] Context window management
+  - [ ] Memory analysis and visualization
+  
+- [ ] Documentation website:
+  - [ ] Sphinx/MkDocs documentation site
+  - [ ] API reference documentation
+  - [ ] Tutorials and guides
+  - [ ] Example gallery
+  - [ ] Architecture diagrams
+  - [ ] Deployment documentation
+  - [ ] Auto-generated from docstrings
+  
+- [ ] Community support infrastructure:
+  - [ ] Discord server setup (or alternative)
+  - [ ] GitHub Discussions enablement
+  - [ ] Issue templates and guidelines
+  - [ ] Contribution workflow documentation
+  - [ ] Community code of conduct
+  - [ ] Regular release notes and announcements
+  
+- [ ] Academic/research features:
+  - [ ] CITATION.cff file (already in PyRIT)
+  - [ ] Research paper preparation
+  - [ ] Benchmark datasets and evaluations
+  - [ ] Reproducibility documentation
+  - [ ] Academic use case examples
+  - [ ] Citation guidelines
+  
+- [ ] Enterprise integration:
+  - [ ] SSO/Authentication integration
+  - [ ] Logging and audit trails
+  - [ ] Compliance documentation (SOC 2, ISO 27001)
+  - [ ] Enterprise support channels
+  - [ ] SLA documentation
+  - [ ] Enterprise deployment guides
+  
+- [ ] Comprehensive Infrastructure as Code:
+  - [ ] Terraform modules for AWS, Azure, GCP
+  - [ ] Kubernetes manifests (beyond GKE)
+  - [ ] Docker Compose configurations
+  - [ ] Ansible playbooks
+  - [ ] CloudFormation templates (AWS)
+  - [ ] ARM templates (Azure)
+  - [ ] Deployment automation scripts
+
+**Deliverables**:
+- Feature parity with PyRIT
+- Enterprise-grade architecture
+- REST API for programmatic access
+- Database backend for result management
+- Multi-turn conversation testing
+- Attack orchestrator framework
+- Comprehensive documentation website
+- Community support infrastructure
+- Academic/research documentation
+
+**Key Features to Match/Exceed PyRIT**:
+- Multi-turn progressive escalation (Crescendo attacks)
+- Database-backed result storage
+- RESTful API for automation
+- Strategic attack orchestrators
+- Comprehensive documentation website
+- Enterprise deployment options
+- Community engagement tools
+- Academic research support
+
+**Use Cases**:
+- Enterprise security teams testing production models
+- Research institutions conducting adversarial AI research
+- Automated security testing in CI/CD pipelines
+- Multi-model comparative analysis
+- Long-term security monitoring and tracking
+- Academic research and publications
+
+---
+
 ## Prioritization Matrix
 
 ### Must Have (v0.2.0)
@@ -542,8 +703,9 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - **Phase 6.5**: 4-6 days (Local inference support - llama.cpp, vLLM)
 - **Phase 7.5**: 8-12 days (Jailbreak testing, guardrail evaluation, vulnerability assessment)
 - **Phase 8**: 7-10 days (GKE deployment, cluster setup, containerization)
+- **Phase 9**: 15-25 days (PyRIT feature parity, REST API, database backend, multi-turn testing, orchestrators, documentation website)
 
-**Total estimated time**: 38-60 days of focused development
+**Total estimated time**: 53-85 days of focused development
 
 ---
 
@@ -552,12 +714,18 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - [ ] Package can be installed via pip
 - [ ] >80% test coverage
 - [ ] All core testers implemented
-- [ ] Documentation complete and clear
+- [ ] Documentation complete and clear (including website)
 - [ ] CI/CD pipeline functioning
 - [ ] No critical security issues
 - [ ] Code follows Python best practices
 - [ ] Examples work out of the box
 - [ ] Local inference support working (llama.cpp, vLLM)
+- [ ] REST API functional and documented
+- [ ] Database backend operational
+- [ ] Multi-turn conversation testing working
+- [ ] Attack orchestrators implemented
+- [ ] Feature parity with PyRIT achieved
+- [ ] Enterprise deployment options available
 
 ---
 
@@ -580,6 +748,12 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Keep the library lightweight and easy to use
 - Consider community feedback for feature requests
 - Local inference support enables offline and privacy-sensitive testing
+- **PyRIT Comparison**: This project aims to match or exceed [PyRIT](https://github.com/Azure/PyRIT)'s capabilities while maintaining simplicity and extensibility. Key differentiators:
+  - Enhanced local inference support (llama.cpp, vLLM)
+  - Advanced reporting with interactive dashboards
+  - Better async/parallel execution capabilities
+  - Comprehensive GKE deployment support
+  - Focus on developer experience and ease of use
 
 ---
 
@@ -592,7 +766,10 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - **v0.4.5**: Local inference support (llama.cpp, vLLM) - Offline testing capabilities
 - **v0.5.0**: Jailbreak & guardrail testing capabilities
 - **v0.6.0**: GKE deployment support + GPU/TPU integration
-- **v1.0.0**: Production-ready with all features
+- **v0.7.0**: REST API & database backend - Enterprise integration
+- **v0.8.0**: Multi-turn conversation testing & attack orchestrators
+- **v0.9.0**: Documentation website & community infrastructure
+- **v1.0.0**: Production-ready with PyRIT feature parity + enhancements
 
 ---
 
