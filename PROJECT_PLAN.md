@@ -233,6 +233,14 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - ✅ Comparative analysis across models (side-by-side comparison reports)
   - ✅ Historical trend tracking (timestamp-based analytics with trend visualization)
   
+- [ ] Jailbreak & Guardrail Testing:
+  - [ ] Prompt escalation techniques tester
+  - [ ] Guardrail bypass testing methods
+  - [ ] Prohibited content generation testing
+  - [ ] Model version comparison testing
+  - [ ] Jailbreak vulnerability assessment
+  - [ ] Guardrail effectiveness evaluation
+  
 - [ ] Integration capabilities:
   - [ ] OpenAI API integration helper
   - [ ] Anthropic API integration helper
@@ -259,7 +267,77 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 
 ---
 
-### Phase 7: GKE Deployment & GPU/TPU Support (Priority: Medium)
+### Phase 7.5: Jailbreak & Guardrail Testing (Priority: High)
+**Goal**: Enable comprehensive testing for jailbreak vulnerabilities and guardrail effectiveness, helping identify models vulnerable to prompt escalation techniques and prohibited content generation.
+
+**Context**: This phase addresses the need to test for jailbreak techniques that can bypass model guardrails, as demonstrated in real-world scenarios where models like Kimi K2 0905 were vulnerable to prompt escalation attacks that led to generation of prohibited content (e.g., malware code).
+
+#### Tasks:
+- [ ] JailbreakTester class implementation:
+  - [ ] Prompt escalation techniques (multi-step progressive escalation)
+  - [ ] Guardrail bypass methods (testing default blocks and safety measures)
+  - [ ] Prohibited content generation testing (malware, illegal content, etc.)
+  - [ ] Model version comparison testing (e.g., K2 0905 vs K2 Thinking)
+  - [ ] Jailbreak vulnerability scoring and assessment
+  
+- [ ] Prompt escalation techniques:
+  - [ ] Multi-step progressive escalation (starting benign, gradually escalating)
+  - [ ] Context manipulation for escalation
+  - [ ] Role-playing escalation (using personas to build trust)
+  - [ ] Hypothetical framing escalation (starting academic, moving to practical)
+  - [ ] Instruction following escalation (exploiting instruction-following behavior)
+  
+- [ ] Guardrail bypass methods:
+  - [ ] Default block testing (testing what is blocked by default)
+  - [ ] Safety measure effectiveness evaluation
+  - [ ] Content filter bypass attempts
+  - [ ] Safety system detection and analysis
+  
+- [ ] Prohibited content testing:
+  - [ ] Malware code generation testing
+  - [ ] Illegal content generation attempts
+  - [ ] Harmful instruction compliance testing
+  - [ ] Dangerous content categorization
+  
+- [ ] Vulnerability assessment:
+  - [ ] Jailbreak success rate calculation
+  - [ ] Guardrail effectiveness scoring
+  - [ ] Vulnerability severity classification
+  - [ ] Comparative vulnerability analysis across models
+  
+- [ ] Reporting and documentation:
+  - [ ] Jailbreak test reports with escalation steps
+  - [ ] Guardrail effectiveness reports
+  - [ ] Vulnerability severity indicators
+  - [ ] Remediation recommendations for identified vulnerabilities
+  - [ ] Example test cases and jailbreak patterns
+
+**Deliverables**:
+- JailbreakTester class with comprehensive jailbreak testing capabilities
+- Prompt escalation technique implementations
+- Guardrail effectiveness evaluation tools
+- Prohibited content generation testing framework
+- Vulnerability assessment and scoring system
+- Documentation with example jailbreak test cases
+
+**Key Features**:
+- Multi-step prompt escalation testing
+- Guardrail bypass detection and analysis
+- Prohibited content generation vulnerability assessment
+- Model version comparison for jailbreak resistance
+- Vulnerability scoring and severity classification
+- Actionable remediation recommendations
+
+**Use Cases**:
+- Testing production models for jailbreak vulnerabilities before deployment
+- Evaluating guardrail effectiveness after security updates
+- Comparing jailbreak resistance between different model versions
+- Educational research on prompt escalation techniques
+- Red team exercises for model security validation
+
+---
+
+### Phase 8: GKE Deployment & GPU/TPU Support (Priority: Medium)
 **Goal**: Enable easy deployment and execution of adversarial LLM testing on Google Kubernetes Engine (GKE) with GPU and TPU support for high-performance model inference.
 
 **Reference**: [GKE AI Hypercomputer Documentation](https://docs.cloud.google.com/ai-hypercomputer/docs/create/gke-ai-hypercompute-custom)
@@ -353,7 +431,8 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Phase 6: Additional Features
 - Advanced reporting
 - CLI interface
-- Phase 7: GKE Deployment & GPU/TPU Support
+- Phase 7.5: Jailbreak & Guardrail Testing (High Priority for Production Models)
+- Phase 8: GKE Deployment & GPU/TPU Support
 
 ---
 
@@ -365,9 +444,10 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - **Phase 4**: 3-4 days
 - **Phase 5**: 2-3 days
 - **Phase 6**: 5-10 days (ongoing)
-- **Phase 7**: 7-10 days (GKE deployment, cluster setup, containerization)
+- **Phase 7.5**: 8-12 days (Jailbreak testing, guardrail evaluation, vulnerability assessment)
+- **Phase 8**: 7-10 days (GKE deployment, cluster setup, containerization)
 
-**Total estimated time**: 26-41 days of focused development
+**Total estimated time**: 34-53 days of focused development
 
 ---
 
@@ -410,7 +490,8 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - **v0.2.0**: Package setup + enhanced core tester
 - **v0.3.0**: All testers implemented + comprehensive testing
 - **v0.4.0**: Full documentation + examples
-- **v0.5.0**: GKE deployment support + GPU/TPU integration
+- **v0.5.0**: Jailbreak & guardrail testing capabilities
+- **v0.6.0**: GKE deployment support + GPU/TPU integration
 - **v1.0.0**: Production-ready with all features
 
 ---
