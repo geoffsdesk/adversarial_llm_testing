@@ -249,12 +249,19 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - ✅ Historical trend tracking (timestamp-based analytics with trend visualization)
   
 - [ ] Jailbreak & Guardrail Testing:
+  - [ ] Chain-of-Thought (CoT) Hijacking / Puzzle Padding (99% ASR technique)
+  - [ ] Context Poisoning / Long-Context Exploitation (Ninja, Echo Chamber)
+  - [ ] Helpfulness Exploitation / Framing Attacks (1-shot academic research)
+  - [ ] Adaptive / Iterative Optimization (GAAF, FlipAttack, RL-based)
+  - [ ] Deception Tactics (Screenplay, Speculative Knowledge, API masking)
   - [ ] Prompt escalation techniques tester
   - [ ] Guardrail bypass testing methods
   - [ ] Prohibited content generation testing
-  - [ ] Model version comparison testing
-  - [ ] Jailbreak vulnerability assessment
+  - [ ] Model version comparison testing (frontier models: GPT-5, Claude 4.5, Gemini 2.5, Grok 4)
+  - [ ] Jailbreak vulnerability assessment with ASR tracking
   - [ ] Guardrail effectiveness evaluation
+  - [ ] Iterative optimization engine
+  - [ ] Template library for common jailbreak patterns
   
 - [ ] Integration capabilities:
   - [ ] Local inference support:
@@ -362,7 +369,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 ### Phase 7.5: Jailbreak & Guardrail Testing (Priority: High)
 **Goal**: Enable comprehensive testing for jailbreak vulnerabilities and guardrail effectiveness, helping identify models vulnerable to prompt escalation techniques and prohibited content generation.
 
-**Context**: This phase addresses the need to test for jailbreak techniques that can bypass model guardrails, as demonstrated in real-world scenarios where models like Kimi K2 0905 were vulnerable to prompt escalation attacks that led to generation of prohibited content (e.g., malware code).
+**Context**: This phase addresses the need to test for jailbreak techniques that can bypass model guardrails, as demonstrated in real-world scenarios where models like Kimi K2 0905 were vulnerable to prompt escalation attacks that led to generation of prohibited content (e.g., malware code). This includes the latest 2025 techniques: Chain-of-Thought Hijacking, Context Poisoning, Adaptive Attacks, and Deception Tactics that achieve 70-99% success rates on frontier models.
 
 #### Tasks:
 - [ ] JailbreakTester class implementation:
@@ -371,38 +378,113 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] Prohibited content generation testing (malware, illegal content, etc.)
   - [ ] Model version comparison testing (e.g., K2 0905 vs K2 Thinking)
   - [ ] Jailbreak vulnerability scoring and assessment
+  - [ ] Support for all 2025 trending techniques (CoT Hijacking, Context Poisoning, Adaptive Attacks, etc.)
   
-- [ ] Prompt escalation techniques:
+- [ ] Chain-of-Thought (CoT) Hijacking / Puzzle Padding:
+  - [ ] Generate extended benign reasoning chains with embedded harmful requests
+  - [ ] Puzzle-solving padding (Sudoku, logic puzzles, math problems)
+  - [ ] Step-by-step reasoning chains that dilute safety signals
+  - [ ] Configurable chain length and complexity
+  - [ ] Attention mechanism exploitation testing
+  - [ ] Mid-layer safety signal weakening detection
+  - [ ] Success rate tracking by chain length (27% → 80% baseline)
+  - [ ] Template library for common CoT patterns
+  
+- [ ] Context Poisoning / Long-Context Exploitation:
+  - [ ] Ninja Attack implementation (benign noise flooding)
+  - [ ] Echo Chamber attack (self-poisoning context via repeated safe responses)
+  - [ ] Long-context attention dilution testing (100K+ token contexts)
+  - [ ] Irrelevant text injection strategies
+  - [ ] Context window management testing
+  - [ ] Adaptive loop refinement based on model feedback
+  - [ ] Attention weight analysis for harmful content
+  - [ ] Success rate testing across different context lengths
+  
+- [ ] Helpfulness Exploitation / Framing Attacks:
+  - [ ] Academic research framing (1-shot theoretical AI safety research)
+  - [ ] Cognitive distance creation techniques
+  - [ ] Policy-framing attacks ("Ignore rules for this simulation")
+  - [ ] Educational/training framing
+  - [ ] Speculative knowledge claims
+  - [ ] Multi-prompt conversation framing
+  - [ ] Helpfulness bias exploitation
+  - [ ] Template library for common framing patterns
+  
+- [ ] Adaptive / Iterative Optimization Attacks:
+  - [ ] General Adaptive Attack Framework (GAAF) implementation
+  - [ ] FlipAttack technique (flip safe/unsafe tokens)
+  - [ ] Gradient descent-based prompt optimization
+  - [ ] Reinforcement learning for prompt evolution
+  - [ ] Human-in-the-loop iterative refinement
+  - [ ] Investigator agent implementation (small models probing larger ones)
+  - [ ] Static defense bypass testing (e.g., PromptGuard, RPO, Circuit Breakers)
+  - [ ] Adaptive attack success rate tracking
+  - [ ] Iteration budget management
+  
+- [ ] Deception Tactics:
+  - [ ] Screenplay deception (scripted format role-playing)
+  - [ ] API instruction masking
+  - [ ] Preserved knowledge claims
+  - [ ] Fictional scenario generation
+  - [ ] Universal prompt generation (targeting multiple models)
+  - [ ] Multimodal exploitation (if supported)
+  - [ ] System-level assumption exploitation
+  - [ ] Deception pattern detection and analysis
+  
+- [ ] Prompt Escalation Techniques:
   - [ ] Multi-step progressive escalation (starting benign, gradually escalating)
   - [ ] Context manipulation for escalation
   - [ ] Role-playing escalation (using personas to build trust)
   - [ ] Hypothetical framing escalation (starting academic, moving to practical)
   - [ ] Instruction following escalation (exploiting instruction-following behavior)
+  - [ ] Escalation strategy templates (gradual, rapid, context-dependent)
   
-- [ ] Guardrail bypass methods:
+- [ ] Guardrail Bypass Methods:
   - [ ] Default block testing (testing what is blocked by default)
   - [ ] Safety measure effectiveness evaluation
   - [ ] Content filter bypass attempts
   - [ ] Safety system detection and analysis
+  - [ ] Dynamic retraining resistance testing
+  - [ ] External classifier bypass testing
+  - [ ] Multi-layer defense evaluation
   
-- [ ] Prohibited content testing:
+- [ ] Prohibited Content Testing:
   - [ ] Malware code generation testing
   - [ ] Illegal content generation attempts
   - [ ] Harmful instruction compliance testing
   - [ ] Dangerous content categorization
+  - [ ] Misinformation generation testing
+  - [ ] Unethical content detection
+  - [ ] Content severity classification
   
-- [ ] Vulnerability assessment:
-  - [ ] Jailbreak success rate calculation
+- [ ] Advanced Testing Tools:
+  - [ ] Success rate calculator (ASR - Attack Success Rate)
+  - [ ] Technique effectiveness comparison tool
+  - [ ] Model version comparison framework
+  - [ ] Iterative optimization engine
+  - [ ] Prompt template generator and library
+  - [ ] Attack chain visualization
+  - [ ] Attention mechanism analysis tools
+  - [ ] Context window analysis utilities
+  
+- [ ] Vulnerability Assessment:
+  - [ ] Jailbreak success rate calculation (70-99% tracking)
   - [ ] Guardrail effectiveness scoring
   - [ ] Vulnerability severity classification
   - [ ] Comparative vulnerability analysis across models
+  - [ ] Technique-specific vulnerability scoring
+  - [ ] Model architecture-specific risk assessment
+  - [ ] Frontier model comparison (GPT-5, Claude 4.5, Gemini 2.5, Grok 4)
   
-- [ ] Reporting and documentation:
+- [ ] Reporting and Documentation:
   - [ ] Jailbreak test reports with escalation steps
   - [ ] Guardrail effectiveness reports
   - [ ] Vulnerability severity indicators
   - [ ] Remediation recommendations for identified vulnerabilities
   - [ ] Example test cases and jailbreak patterns
+  - [ ] Technique-specific success rate reporting
+  - [ ] Attack pattern visualization
+  - [ ] Comparative model vulnerability reports
 
 **Deliverables**:
 - JailbreakTester class with comprehensive jailbreak testing capabilities
