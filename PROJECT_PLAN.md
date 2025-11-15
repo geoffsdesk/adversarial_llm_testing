@@ -687,6 +687,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Phase 6.5: Local inference support (llama.cpp, vLLM) - High Priority for Offline Testing
 - Phase 7.5: Jailbreak & Guardrail Testing (High Priority for Production Models)
 - Phase 8: GKE Deployment & GPU/TPU Support
+- Phase 9: PyRIT Feature Parity & Enterprise Features (High Priority for Enterprise Adoption)
 
 ---
 
