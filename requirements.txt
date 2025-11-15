@@ -1,0 +1,13 @@
+# Adversarial LLM Testing Library - Runtime Dependencies
+# This package has no required runtime dependencies for basic functionality
+
+# For development dependencies, install with:
+# pip install -e ".[dev]"
+
+# Or install individually:
+# pytest>=7.0.0
+# pytest-cov>=4.0.0
+# black>=23.0.0
+# flake8>=6.0.0
+# mypy>=1.0.0
+
