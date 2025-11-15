@@ -1571,6 +1571,9 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - **v0.8.0**: Multi-turn conversation testing & attack orchestrators
 - **v0.9.0**: Documentation website & community infrastructure
 - **v1.0.0**: Production-ready with PyRIT feature parity + enhancements
+- **v1.1.0**: Frontier Security Research Model (Phase 10)
+- **v1.2.0**: Agentic Testing Processes & Specialized Models (Phase 11)
+- **v1.3.0**: Mixture of Experts (MoE) Integration & Orchestration (Phase 12)
 
 ---
 
