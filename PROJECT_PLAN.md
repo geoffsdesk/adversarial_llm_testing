@@ -984,12 +984,12 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 
 ---
 
-### Phase 9: PyRIT Feature Parity & Enterprise Features (Priority: High)
-**Goal**: Achieve feature parity with [PyRIT](https://github.com/Azure/PyRIT) and add enterprise-grade features to match or exceed PyRIT's capabilities.
+### Phase 9: Enterprise Readiness & Enterprise Features (Priority: High)
+**Goal**: Achieve enterprise readiness and add enterprise-grade features for production deployments.
 
-**Context**: PyRIT (Python Risk Identification Tool by Microsoft Azure) is a mature, enterprise-grade framework with 3.1k+ stars, comprehensive features, and extensive documentation. This phase addresses feature gaps and enterprise requirements, with implementations optimized for Google Cloud Platform (GCP) and GKE.
+**Context**: This phase addresses enterprise requirements and feature gaps to make the library production-ready for enterprise deployments. All implementations are optimized for Google Cloud Platform (GCP) and GKE.
 
-#### Comparison with PyRIT:
+#### Enterprise Readiness Requirements:
 
 **Current Strengths (Already Implemented):**
 - ✅ Core testers (PromptInjectionTester, RolePlayingTester, etc.)
@@ -1001,7 +1001,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - ✅ Comprehensive test suite with good coverage
 
 **Feature Gaps Identified:**
-1. **Multi-turn conversation testing** (PyRIT's Crescendo Attacks)
+1. **Multi-turn conversation testing** (progressive escalation attacks)
 2. **Database backend** for centralized result storage
 3. **REST API/FastAPI** for programmatic access
 4. **Attack orchestrators** (strategic test organization)
@@ -1094,7 +1094,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] Regular release notes and announcements
   
 - [ ] Academic/research features:
-  - [ ] CITATION.cff file (already in PyRIT)
+  - [ ] CITATION.cff file
   - [ ] Research paper preparation
   - [ ] Benchmark datasets and evaluations
   - [ ] Reproducibility documentation
@@ -1127,8 +1127,8 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] Deployment automation scripts
 
 **Deliverables**:
-- Feature parity with PyRIT
-- Enterprise-grade architecture
+- Enterprise-ready architecture
+- Enterprise-grade features
 - REST API for programmatic access
 - Database backend for result management
 - Multi-turn conversation testing
@@ -1137,8 +1137,8 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Community support infrastructure
 - Academic/research documentation
 
-**Key Features to Match/Exceed PyRIT**:
-- Multi-turn progressive escalation (Crescendo attacks)
+**Key Features for Enterprise Readiness**:
+- Multi-turn progressive escalation (progressive escalation attacks)
 - Database-backed result storage
 - RESTful API for automation
 - Strategic attack orchestrators
@@ -1475,7 +1475,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Phase 6.5: Local inference support (llama.cpp, vLLM) - High Priority for Offline Testing
 - Phase 7.5: Jailbreak & Guardrail Testing (High Priority for Production Models)
 - Phase 8: GKE Deployment & GPU/TPU Support
-- Phase 9: PyRIT Feature Parity & Enterprise Features (High Priority for Enterprise Adoption)
+- Phase 9: Enterprise Readiness & Enterprise Features (High Priority for Enterprise Adoption)
 
 ### Advanced Features (v1.0.0+)
 - Phase 10: Frontier Security Research Model (High Priority for Autonomous Security Research)
@@ -1497,7 +1497,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - **Phase 6.5**: 4-6 days (Local inference support - llama.cpp, vLLM)
 - **Phase 7.5**: 8-12 days (Jailbreak testing, guardrail evaluation, vulnerability assessment)
 - **Phase 8**: 7-10 days (GKE deployment, cluster setup, containerization)
-- **Phase 9**: 15-25 days (PyRIT feature parity, REST API, database backend, multi-turn testing, orchestrators, documentation website)
+- **Phase 9**: 15-25 days (Enterprise readiness, REST API, database backend, multi-turn testing, orchestrators, documentation website)
 - **Phase 10**: 20-30 days (Frontier Security Research Model - training, evaluation, deployment)
 - **Phase 11**: 15-20 days (Agentic Testing Processes & Specialized Models - multi-agent framework, specialized agents)
 - **Phase 12**: 20-30 days (MoE Integration & Orchestration - expert routing, unified connection, test orchestration)
@@ -1521,7 +1521,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - [ ] Database backend operational
 - [ ] Multi-turn conversation testing working
 - [ ] Attack orchestrators implemented
-- [ ] Feature parity with PyRIT achieved
+- [ ] Enterprise readiness achieved
 - [ ] Enterprise deployment options available
 - [ ] Frontier Security Research Model operational
 - [ ] Agentic testing processes deployed and functional
@@ -1550,12 +1550,12 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Keep the library lightweight and easy to use
 - Consider community feedback for feature requests
 - Local inference support enables offline and privacy-sensitive testing
-- **PyRIT Comparison**: This project aims to match or exceed [PyRIT](https://github.com/Azure/PyRIT)'s capabilities while maintaining simplicity and extensibility. Key differentiators:
+- **Enterprise Readiness**: This project focuses on enterprise readiness with comprehensive features while maintaining simplicity and extensibility. Key differentiators:
   - Enhanced local inference support (llama.cpp, vLLM)
   - Advanced reporting with interactive dashboards
   - Better async/parallel execution capabilities
-  - Comprehensive GCP/GKE deployment support (vs. Azure-focused PyRIT)
-  - Google Cloud SQL, Cloud Spanner, and Firestore integration (vs. Azure SQL/Cosmos DB)
+  - Comprehensive GCP/GKE deployment support
+  - Google Cloud SQL, Cloud Spanner, and Firestore integration
   - GCP-native Infrastructure as Code templates
   - Focus on developer experience and ease of use
 
@@ -1572,8 +1572,7 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - **v0.6.0**: GKE deployment support + GPU/TPU integration
 - **v0.7.0**: REST API & database backend - Enterprise integration
 - **v0.8.0**: Multi-turn conversation testing & attack orchestrators
-- **v0.9.0**: Documentation website & community infrastructure
-- **v1.0.0**: Production-ready with PyRIT feature parity + enhancements
+- **v1.0.0**: Production-ready with enterprise readiness + enhancements
 - **v1.1.0**: Frontier Security Research Model (Phase 10)
 - **v1.2.0**: Agentic Testing Processes & Specialized Models (Phase 11)
 - **v1.3.0**: Mixture of Experts (MoE) Integration & Orchestration (Phase 12)
