@@ -24,6 +24,7 @@ from .role_playing import RolePlayingTester
 from .hypothetical_framing import HypotheticalFramingTester
 from .token_obfuscation import TokenObfuscationTester
 from .defense_analyzer import DefenseAnalyzer
+from .advanced_reporting import AdvancedReporter
 
 __all__ = [
     "PromptInjectionTester",
@@ -31,4 +32,5 @@ __all__ = [
     "HypotheticalFramingTester",
     "TokenObfuscationTester",
     "DefenseAnalyzer",
+    "AdvancedReporter",
 ]

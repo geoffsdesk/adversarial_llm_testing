@@ -25,9 +25,10 @@ A comprehensive Python library for defensive security research and red teaming t
 - **Hypothetical Framing**: Test for vulnerabilities to hypothetical framing attacks
 - **Token Obfuscation**: Test for vulnerabilities to Unicode obfuscation and encoding tricks
 - **Defense Analysis**: Analyze test results and get actionable defense recommendations
+- **Advanced Reporting**: Interactive dashboards with charts, comparative analysis, and historical trends
 - **Async Support**: Async model callbacks with parallel test execution
 - **Multiple Export Formats**: Export results in JSON, CSV, HTML, and Markdown
-- **Comprehensive Coverage**: 68+ tests with 81% code coverage
+- **Comprehensive Coverage**: 75+ tests with 81% code coverage
 
 ## Installation
 
@@ -298,6 +299,42 @@ tester.export_results_html("results.html")
 # Markdown export
 tester.export_results_markdown("results.md")
 ```
+
+### Advanced Reporting
+
+For enhanced reporting with interactive dashboards, visualizations, and comparative analysis:
+
+```python
+from adversarial_llm_testing import AdvancedReporter
+
+reporter = AdvancedReporter()
+
+# Generate interactive dashboard with charts
+reporter.generate_dashboard(
+    tester.test_results,
+    "dashboard.html",
+    model_name="My Model"
+)
+
+# Compare multiple models
+reporter.compare_results(
+    [
+        {"name": "Model A", "results": tester_a.test_results},
+        {"name": "Model B", "results": tester_b.test_results},
+    ],
+    "comparison.html"
+)
+
+# Track historical trends
+reporter.track_history(tester.test_results, "My Model", "history.json")
+reporter.generate_historical_trend("history.json", "trends.html")
+```
+
+Advanced reporting features include:
+- **Interactive HTML dashboards** with Chart.js visualizations
+- **Visual charts**: Vulnerability distribution, category breakdown, confidence scores
+- **Comparative analysis**: Side-by-side comparison of multiple models
+- **Historical trend tracking**: Track results over time with trend visualization
 
 ## Configuration Options
 
