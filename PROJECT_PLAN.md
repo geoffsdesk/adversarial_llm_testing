@@ -549,7 +549,9 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - [ ] Database backend integration:
   - [ ] SQLite support for local storage
   - [ ] PostgreSQL/MySQL support for enterprise deployments
-  - [ ] Azure SQL/Azure Cosmos DB integration (cloud option)
+  - [ ] Google Cloud SQL (PostgreSQL/MySQL) integration
+  - [ ] Cloud Spanner integration for global scale
+  - [ ] Firestore integration for NoSQL/document storage
   - [ ] Result persistence and querying
   - [ ] Historical data management
   - [ ] Database schema design
@@ -559,10 +561,12 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] FastAPI server implementation
   - [ ] RESTful endpoints for test execution
   - [ ] Result retrieval and querying APIs
-  - [ ] Authentication and authorization
+  - [ ] Google Cloud IAM authentication and authorization
+  - [ ] Cloud Endpoints or Cloud Run integration
   - [ ] API documentation (OpenAPI/Swagger)
   - [ ] WebSocket support for real-time updates
-  - [ ] Rate limiting and security
+  - [ ] Cloud Armor rate limiting and security
+  - [ ] Cloud Load Balancing integration
   
 - [ ] Attack orchestrators:
   - [ ] Base orchestrator class
@@ -629,12 +633,14 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] Enterprise deployment guides
   
 - [ ] Comprehensive Infrastructure as Code:
-  - [ ] Terraform modules for AWS, Azure, GCP
-  - [ ] Kubernetes manifests (beyond GKE)
+  - [ ] Terraform modules for GCP
+  - [ ] Google Cloud Deployment Manager templates
+  - [ ] Kubernetes manifests for GKE
   - [ ] Docker Compose configurations
-  - [ ] Ansible playbooks
-  - [ ] CloudFormation templates (AWS)
-  - [ ] ARM templates (Azure)
+  - [ ] Ansible playbooks for GCP resources
+  - [ ] GKE cluster deployment templates
+  - [ ] Cloud Run deployment configurations
+  - [ ] Cloud Functions deployment scripts
   - [ ] Deployment automation scripts
 
 **Deliverables**:
@@ -753,7 +759,9 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - Enhanced local inference support (llama.cpp, vLLM)
   - Advanced reporting with interactive dashboards
   - Better async/parallel execution capabilities
-  - Comprehensive GKE deployment support
+  - Comprehensive GCP/GKE deployment support (vs. Azure-focused PyRIT)
+  - Google Cloud SQL, Cloud Spanner, and Firestore integration (vs. Azure SQL/Cosmos DB)
+  - GCP-native Infrastructure as Code templates
   - Focus on developer experience and ease of use
 
 ---
