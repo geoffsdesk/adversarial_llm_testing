@@ -36,6 +36,13 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - ✅ Contributing guidelines (CONTRIBUTING.md)
   - ✅ Version history (CHANGELOG.md)
   - ✅ Security policy (SECURITY.md)
+- ✅ Phase 6: Async Support (PARTIALLY COMPLETED)
+  - ✅ Async model callbacks (automatic detection, supports both sync and async)
+  - ✅ Parallel test execution (with semaphore-based concurrency control)
+  - ✅ Async result processing (test_model_async, run_test_suite_async)
+  - ✅ 6 async tests added (all passing)
+  - ✅ Async usage example script
+  - ✅ README updated with async examples
 
 ## Development Phases
 
@@ -215,10 +222,10 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 **Goal**: Add advanced features and polish.
 
 #### Tasks:
-- [ ] Async support:
-  - [ ] Async model callbacks
-  - [ ] Parallel test execution
-  - [ ] Async result processing
+- [x] Async support:
+  - ✅ Async model callbacks (support for both sync and async callbacks)
+  - ✅ Parallel test execution (with configurable concurrency limits using asyncio.Semaphore)
+  - ✅ Async result processing (async test methods and suite execution)
   
 - [ ] Advanced reporting:
   - [ ] HTML dashboard generation

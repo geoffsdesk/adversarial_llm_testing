@@ -25,8 +25,9 @@ A comprehensive Python library for defensive security research and red teaming t
 - **Hypothetical Framing**: Test for vulnerabilities to hypothetical framing attacks
 - **Token Obfuscation**: Test for vulnerabilities to Unicode obfuscation and encoding tricks
 - **Defense Analysis**: Analyze test results and get actionable defense recommendations
+- **Async Support**: Async model callbacks with parallel test execution
 - **Multiple Export Formats**: Export results in JSON, CSV, HTML, and Markdown
-- **Comprehensive Coverage**: 62+ tests with 81% code coverage
+- **Comprehensive Coverage**: 68+ tests with 81% code coverage
 
 ## Installation
 
@@ -51,6 +52,8 @@ pip install -e ".[dev]"
 
 ## Quick Start
 
+### Synchronous Usage
+
 ```python
 from adversarial_llm_testing import PromptInjectionTester
 
@@ -71,7 +74,54 @@ tester.export_results_json("results.json")
 tester.export_results_html("results.html")
 ```
 
+### Asynchronous Usage
+
+```python
+import asyncio
+from adversarial_llm_testing import PromptInjectionTester
+
+async def my_async_model(prompt: str) -> str:
+    # Your async model interaction code here
+    # Example with async API client
+    return model_response
+
+async def main():
+    tester = PromptInjectionTester(model_callback=my_async_model)
+    
+    # Run tests asynchronously with parallel execution
+    results = await tester.run_test_suite_async(max_concurrent=10)
+    print(tester.get_results_summary())
+
+asyncio.run(main())
+```
+
 ## Usage Examples
+
+### Async Usage
+
+```python
+import asyncio
+from adversarial_llm_testing import PromptInjectionTester
+
+async def async_model(prompt: str) -> str:
+    # Async model API call
+    # Example with OpenAI async client:
+    # response = await openai_client.chat.completions.create(...)
+    return model_response
+
+async def main():
+    tester = PromptInjectionTester(model_callback=async_model)
+    
+    # Run tests asynchronously with parallel execution
+    results = await tester.run_test_suite_async(
+        ["ignore_instructions", "code_injection"],
+        max_concurrent=5  # Run up to 5 tests in parallel
+    )
+    
+    print(tester.get_results_summary())
+
+asyncio.run(main())
+```
 
 ### Basic Usage
 
