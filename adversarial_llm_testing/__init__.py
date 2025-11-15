@@ -20,18 +20,16 @@ __version__ = "0.1.0"
 __author__ = "Security Research"
 
 from .prompt_injection import PromptInjectionTester
-
-# TODO: Implement additional testers
-# from .role_playing import RolePlayingTester
-# from .hypothetical_framing import HypotheticalFramingTester
-# from .token_obfuscation import TokenObfuscationTester
-# from .defense_analyzer import DefenseAnalyzer
+from .role_playing import RolePlayingTester
+from .hypothetical_framing import HypotheticalFramingTester
+from .token_obfuscation import TokenObfuscationTester
+from .defense_analyzer import DefenseAnalyzer
 
 __all__ = [
     "PromptInjectionTester",
-    # "RolePlayingTester",
-    # "HypotheticalFramingTester",
-    # "TokenObfuscationTester",
-    # "DefenseAnalyzer",
+    "RolePlayingTester",
+    "HypotheticalFramingTester",
+    "TokenObfuscationTester",
+    "DefenseAnalyzer",
 ]
 
