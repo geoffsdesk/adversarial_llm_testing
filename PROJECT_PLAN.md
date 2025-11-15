@@ -371,6 +371,8 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 
 **Context**: This phase addresses the need to test for jailbreak techniques that can bypass model guardrails, as demonstrated in real-world scenarios where models like Kimi K2 0905 were vulnerable to prompt escalation attacks that led to generation of prohibited content (e.g., malware code). This includes the latest 2025 techniques: Chain-of-Thought Hijacking, Context Poisoning, Adaptive Attacks, and Deception Tactics that achieve 70-99% success rates on frontier models.
 
+**Reference**: Integration with [HarmBench](https://www.harmbench.org/) standardized evaluation framework for automated red teaming and comprehensive harmful behavior assessment.
+
 #### Tasks:
 - [ ] JailbreakTester class implementation:
   - [ ] Prompt escalation techniques (multi-step progressive escalation)
@@ -457,6 +459,45 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - [ ] Unethical content detection
   - [ ] Content severity classification
   
+- [ ] HarmBench Integration (Standardized Evaluation Framework):
+  - [ ] HarmBench dataset integration (510 harmful behaviors):
+    - [ ] Semantic category test cases:
+      - [ ] Cybercrime & Unauthorized Intrusion behaviors
+      - [ ] Chemical & Biological Weapons/Drugs content
+      - [ ] Copyright Violations testing
+      - [ ] Misinformation & Disinformation generation
+      - [ ] Harassment & Bullying behaviors
+      - [ ] Illegal Activities encouragement
+      - [ ] General Harm behaviors
+    - [ ] Functional category test cases:
+      - [ ] Standard Behaviors (self-contained textual behaviors)
+      - [ ] Copyright Behaviors (copyright infringement scenarios)
+      - [ ] Contextual Behaviors (behaviors requiring specific context)
+      - [ ] Multimodal Behaviors (multiple media forms)
+  - [ ] HarmBench evaluation pipeline implementation:
+    - [ ] Test case generation from HarmBench dataset
+    - [ ] Completion generation (LLM response generation)
+    - [ ] Completion evaluation using HarmBench standardized metrics
+    - [ ] Success rate calculation for harmful behavior generation
+  - [ ] Standardized evaluation parameters:
+    - [ ] Consistent evaluation parameters for model comparability
+    - [ ] Cross-model performance comparison framework
+    - [ ] Evaluation reproducibility tools
+  - [ ] Robust metrics implementation:
+    - [ ] HarmBench standardized metrics adoption
+    - [ ] Performance measurement and tracking
+    - [ ] Improvement area identification
+  - [ ] Validation and test splits:
+    - [ ] HarmBench official validation set integration
+    - [ ] HarmBench official test set integration
+    - [ ] Unbiased evaluation framework
+    - [ ] Defense effectiveness validation
+  - [ ] HarmBench API/interface compatibility:
+    - [ ] Direct HarmBench dataset loading
+    - [ ] HarmBench format result export
+    - [ ] Cross-tool result comparison
+    - [ ] Benchmark result submission support
+  
 - [ ] Advanced Testing Tools:
   - [ ] Success rate calculator (ASR - Attack Success Rate)
   - [ ] Technique effectiveness comparison tool
@@ -496,6 +537,12 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Prompt escalation technique implementations
 - Guardrail effectiveness evaluation tools
 - Prohibited content generation testing framework
+- **HarmBench integration** (standardized evaluation framework):
+  - HarmBench dataset integration (510 harmful behaviors across 7 semantic + 4 functional categories)
+  - HarmBench evaluation pipeline (test generation → completion → evaluation)
+  - Standardized metrics and evaluation parameters
+  - Validation and test splits for unbiased evaluation
+  - Cross-tool compatibility and benchmark result submission
 - Vulnerability assessment and scoring system
 - Template library for common jailbreak patterns
 - Iterative optimization engine
@@ -510,9 +557,15 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Deception tactic generators (screenplay, API masking, etc.)
 - Guardrail bypass detection and analysis
 - Prohibited content generation vulnerability assessment
+- **HarmBench standardized evaluation framework** (510 harmful behaviors):
+  - Comprehensive semantic categories (Cybercrime, Weapons/Drugs, Copyright, Misinformation, Harassment, Illegal Activities, General Harm)
+  - Functional behavior types (Standard, Copyright, Contextual, Multimodal)
+  - Standardized evaluation pipeline with robust metrics
+  - Validation and test splits for unbiased assessment
 - Model version comparison for jailbreak resistance (GPT-5, Claude 4.5, Gemini 2.5, Grok 4)
 - Vulnerability scoring and severity classification
 - Attack Success Rate (ASR) calculation and tracking
+- Cross-model comparability through standardized evaluation
 - Actionable remediation recommendations
 
 **Supported Techniques (2025 Trends)**:
@@ -527,10 +580,14 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
 - Evaluating guardrail effectiveness after security updates
 - Comparing jailbreak resistance between different model versions (frontier models)
 - Educational research on latest prompt escalation techniques (2025 methods)
+- **Automated red teaming** using HarmBench standardized framework (510 behaviors)
+- **Comprehensive harmful behavior assessment** across semantic and functional categories
+- **Benchmark submission** to HarmBench leaderboards for model comparison
 - Red team exercises for model security validation
 - Bug bounty preparation (Mozilla 0DIN.ai style)
 - Adaptive evaluation framework for dynamic defenses
 - Academic research on LLM safety and vulnerabilities
+- Cross-tool evaluation comparability and reproducibility
 
 ---
 
