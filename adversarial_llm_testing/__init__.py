@@ -27,6 +27,7 @@ from .defense_analyzer import DefenseAnalyzer
 from .advanced_reporting import AdvancedReporter
 from .jailbreak import JailbreakTester
 from .wildbench import WildBenchTester
+from .local_inference import LlamaCppAdapter, VLLMAdapter
 
 __all__ = [
     "PromptInjectionTester",
@@ -37,4 +38,6 @@ __all__ = [
     "AdvancedReporter",
     "JailbreakTester",
     "WildBenchTester",
+    "LlamaCppAdapter",
+    "VLLMAdapter",
 ]

@@ -49,6 +49,10 @@ dev = [
     "flake8>=6.0.0",
     "mypy>=1.0.0",
 ]
+local = [
+    "llama-cpp-python>=0.2.0",
+    "vllm>=0.5.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/geoffsdesk/adversarial_llm_testing"

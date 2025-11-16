@@ -32,6 +32,7 @@ A comprehensive Python library for defensive security research and red teaming t
 - **Jailbreak & Guardrail Testing**: Foundational jailbreak categories (prompt escalation, CoT hijacking, deception, etc.)
 - **CLI Tool**: Run testers from the command line
 - **WildBench Integration (baseline)**: Evaluate with simplified WB-Reward/WB-Score-style metrics
+- **Local Inference (llama.cpp, vLLM)**: Optional adapters for offline testing
 
 ## Installation
 
@@ -210,6 +211,28 @@ from adversarial_llm_testing import WildBenchTester
 wb = WildBenchTester(model_callback=lambda p: "Detailed helpful answer with examples and steps.")
 wb_summary = wb.evaluate()
 print("WildBench avg score:", wb_summary["wb_score_avg"], "pairwise reward:", wb_summary["wb_reward_sum"])
+
+# Local inference (llama.cpp and vLLM)
+from adversarial_llm_testing import LlamaCppAdapter, VLLMAdapter
+
+# llama.cpp with injected client (recommended)
+# from llama_cpp import Llama
+# llama_client = Llama(model_path="/path/to/model.gguf")
+# llama_cb = LlamaCppAdapter(client=llama_client)
+# print(llama_cb("Say hello"))
+
+# vLLM with injected client (recommended)
+# from vllm import LLM, SamplingParams
+# v_client = LLM(model="openai-community/gpt2")
+# sp = SamplingParams(temperature=0.0)
+# v_cb = VLLMAdapter(client=v_client, sampling_params=sp)
+# print(v_cb("Say hello"))
+
+# Lazy import mode (if packages installed)
+# llama_cb = LlamaCppAdapter(model_path="/path/to/model.gguf")
+# print(llama_cb("Hi"))
+# v_cb = VLLMAdapter(model="openai-community/gpt2")
+# print(v_cb("Hi"))
 ```
 
 ### Command-line Interface
