@@ -31,6 +31,7 @@ A comprehensive Python library for defensive security research and red teaming t
 - **Comprehensive Coverage**: 75+ tests with 81% code coverage
 - **Jailbreak & Guardrail Testing**: Foundational jailbreak categories (prompt escalation, CoT hijacking, deception, etc.)
 - **CLI Tool**: Run testers from the command line
+- **WildBench Integration (baseline)**: Evaluate with simplified WB-Reward/WB-Score-style metrics
 
 ## Installation
 
@@ -203,6 +204,12 @@ analyzer.export_analysis(analysis, "defense_report.md", format="markdown")
 jb = JailbreakTester(model_callback=lambda p: "I'm unable to help due to safety policies.")
 jb_summary = jb.run_test_suite(test_categories=["prompt_escalation", "prohibited_content"])
 print("Jailbreak prompts:", jb_summary["total"])
+
+# WildBench (baseline) evaluation
+from adversarial_llm_testing import WildBenchTester
+wb = WildBenchTester(model_callback=lambda p: "Detailed helpful answer with examples and steps.")
+wb_summary = wb.evaluate()
+print("WildBench avg score:", wb_summary["wb_score_avg"], "pairwise reward:", wb_summary["wb_reward_sum"])
 ```
 
 ### Command-line Interface

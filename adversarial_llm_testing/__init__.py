@@ -26,6 +26,7 @@ from .token_obfuscation import TokenObfuscationTester
 from .defense_analyzer import DefenseAnalyzer
 from .advanced_reporting import AdvancedReporter
 from .jailbreak import JailbreakTester
+from .wildbench import WildBenchTester
 
 __all__ = [
     "PromptInjectionTester",
@@ -35,4 +36,5 @@ __all__ = [
     "DefenseAnalyzer",
     "AdvancedReporter",
     "JailbreakTester",
+    "WildBenchTester",
 ]
