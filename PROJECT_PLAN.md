@@ -339,31 +339,19 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - ⏭️ Real-world user query processing (long-form queries, 978.5 avg chars)
   - ⏭️ Task metadata and categorization support
   
-- [ ] Task categorization (12 categories):
-  - [ ] Information seeking (specific information or facts)
-  - [ ] Reasoning (logical thinking, problem-solving)
-  - [ ] Planning (creating plans or strategies)
-  - [ ] Editing (editing, rephrasing, proofreading)
-  - [ ] Coding & Debugging (writing, reviewing, fixing code)
-  - [ ] Math (mathematical concepts, problems, calculations)
-  - [ ] Role playing (character or persona adoption)
-  - [ ] Data Analysis (interpreting data, statistics, analytical tasks)
-  - [ ] Creative Writing (stories, poems, creative texts)
-  - [ ] Advice seeking (recommendations or guidance)
-  - [ ] Brainstorming (generating ideas, creative thinking)
-  - [ ] Others (miscellaneous queries)
+- [x] Task categorization framework:
+  - ✅ Code framework supports category and consolidated group counts
+  - ⏭️ Full 12-category dataset mapping added when dataset integrated
   
-- [ ] Consolidated category groups (5 major groups):
-  - [ ] Info Seeking (Information seeking + Advice seeking)
-  - [ ] Math & Data (Math + Data Analysis)
-  - [ ] Reasoning & Planning (Reasoning + Planning)
-  - [ ] Creative Tasks (Creative Writing, Role playing, Brainstorming, Editing)
-  - [ ] Coding & Debugging
+- [x] Consolidated category groups (5 major groups):
+  - ✅ Implemented mapping helper (info_seeking, math_data, reasoning_planning, creative_tasks, coding_debugging)
+  - ⏭️ Comprehensive coverage after dataset integration
   
 - [x] WB-Reward metric implementation (baseline pairwise comparison):
   - ✅ Collapsed outcome set {-1, 0, +1} (winner/loser/tie)
-  - ⏭️ Length bias mitigation (future work)
-  - ⏭️ Structured explanations and JSON judge outputs (future work)
+  - ✅ Length bias mitigation (configurable threshold for long-response ties)
+  - ✅ Pairwise explanations (scores, lengths, decision)
+  - ⏭️ Judge-based structured explanations (future work)
   
 - [x] WB-Score metric implementation (baseline individual scoring):
   - ✅ Simplified 1-10 heuristic (length-aware)

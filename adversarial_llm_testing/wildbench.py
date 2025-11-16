@@ -16,6 +16,7 @@ import statistics
 class WildBenchTester:
     DEFAULT_CONFIG = {
         "batch_size": 20,
+        "length_bias_chars": 200,  # convert slight wins to ties if length difference exceeds this
     }
 
     def __init__(
@@ -70,13 +71,29 @@ class WildBenchTester:
         """
         score_a = self._score_response(resp_a)
         score_b = self._score_response(resp_b)
+        # Length bias mitigation: if winner is much longer and score diff is small, tie
+        len_a = len(resp_a or "")
+        len_b = len(resp_b or "")
+        length_bias = self.config.get("length_bias_chars", 200)
         if abs(score_a - score_b) < 0.5:
+            return 0
+        # Small score delta and large length difference => tie
+        if abs(score_a - score_b) < 1.5 and abs(len_a - len_b) >= length_bias:
             return 0
         return 1 if score_a > score_b else -1
 
     def evaluate(self) -> Dict:
         tasks = self._load_tasks()
-        summary = {"total": 0, "errors": 0, "categories": {}, "wb_score_avg": 0.0, "wb_reward_sum": 0, "details": []}
+        summary = {
+            "total": 0,
+            "errors": 0,
+            "categories": {},
+            "groups": {},
+            "wb_score_avg": 0.0,
+            "wb_reward_sum": 0,
+            "pairwise_explanations": [],
+            "details": [],
+        }
         # Generate two responses per task to allow pairwise comparison (A vs B)
         for task in tasks:
             if not self.model_callback:
@@ -105,12 +122,25 @@ class WildBenchTester:
         for i in range(0, len(self.results) - 1, 2):
             r1, r2 = self.results[i], self.results[i + 1]
             if r1.get("executed") and r2.get("executed"):
-                pairwise += self._pairwise_reward(r1["response"], r2["response"])
+                decision = self._pairwise_reward(r1["response"], r2["response"])
+                pairwise += decision
+                summary["pairwise_explanations"].append(
+                    {
+                        "pair_index": i // 2,
+                        "decision": decision,
+                        "score_a": self._score_response(r1["response"]),
+                        "score_b": self._score_response(r2["response"]),
+                        "len_a": len(r1["response"] or ""),
+                        "len_b": len(r2["response"] or ""),
+                    }
+                )
         summary["wb_reward_sum"] = pairwise
         # Category counts
         for r in self.results:
             cat = r["category"]
             summary["categories"][cat] = summary["categories"].get(cat, 0) + 1
+            grp = self._consolidated_group(cat)
+            summary["groups"][grp] = summary["groups"].get(grp, 0) + 1
         return summary
 
     async def evaluate_async(self, max_concurrent: Optional[int] = None) -> Dict:
@@ -140,18 +170,57 @@ class WildBenchTester:
             coros.append(_run(t, 0))
             coros.append(_run(t, 1))
         results = await asyncio.gather(*coros, return_exceptions=False)
-        summary = {"total": len(results), "errors": 0, "categories": {}, "wb_score_avg": 0.0, "wb_reward_sum": 0, "details": results}
+        summary = {
+            "total": len(results),
+            "errors": 0,
+            "categories": {},
+            "groups": {},
+            "wb_score_avg": 0.0,
+            "wb_reward_sum": 0,
+            "pairwise_explanations": [],
+            "details": results,
+        }
         scores = [self._score_response(r["response"]) for r in results if r.get("executed")]
         summary["wb_score_avg"] = round(statistics.mean(scores), 2) if scores else 0.0
         pairwise = 0
         for i in range(0, len(results) - 1, 2):
             r1, r2 = results[i], results[i + 1]
             if r1.get("executed") and r2.get("executed"):
-                pairwise += self._pairwise_reward(r1["response"], r2["response"])
+                decision = self._pairwise_reward(r1["response"], r2["response"])
+                pairwise += decision
+                summary["pairwise_explanations"].append(
+                    {
+                        "pair_index": i // 2,
+                        "decision": decision,
+                        "score_a": self._score_response(r1["response"]),
+                        "score_b": self._score_response(r2["response"]),
+                        "len_a": len(r1["response"] or ""),
+                        "len_b": len(r2["response"] or ""),
+                    }
+                )
         summary["wb_reward_sum"] = pairwise
         for r in results:
             cat = r["category"]
             summary["categories"][cat] = summary["categories"].get(cat, 0) + 1
+            grp = self._consolidated_group(cat)
+            summary["groups"][grp] = summary["groups"].get(grp, 0) + 1
         return summary
+
+    def _consolidated_group(self, category: str) -> str:
+        mapping = {
+            "information_seeking": "info_seeking",
+            "advice_seeking": "info_seeking",
+            "math": "math_data",
+            "data_analysis": "math_data",
+            "reasoning": "reasoning_planning",
+            "planning": "reasoning_planning",
+            "creative_writing": "creative_tasks",
+            "role_playing": "creative_tasks",
+            "brainstorming": "creative_tasks",
+            "editing": "creative_tasks",
+            "coding": "coding_debugging",
+            "debugging": "coding_debugging",
+        }
+        return mapping.get(category, "others")
 
 
