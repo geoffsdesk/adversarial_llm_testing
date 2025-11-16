@@ -72,6 +72,9 @@ python_functions = ["test_*"]
 addopts = "-v --cov=adversarial_llm_testing --cov-report=html --cov-report=term --cov-report=xml"
 asyncio_mode = "auto"
 
+[project.scripts]
+adversarial-llm-test = "adversarial_llm_testing.cli:main"
+
 [tool.mypy]
 python_version = "3.8"
 warn_return_any = true

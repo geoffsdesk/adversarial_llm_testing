@@ -29,6 +29,8 @@ A comprehensive Python library for defensive security research and red teaming t
 - **Async Support**: Async model callbacks with parallel test execution
 - **Multiple Export Formats**: Export results in JSON, CSV, HTML, and Markdown
 - **Comprehensive Coverage**: 75+ tests with 81% code coverage
+- **Jailbreak & Guardrail Testing**: Foundational jailbreak categories (prompt escalation, CoT hijacking, deception, etc.)
+- **CLI Tool**: Run testers from the command line
 
 ## Installation
 
@@ -201,6 +203,18 @@ analyzer.export_analysis(analysis, "defense_report.md", format="markdown")
 jb = JailbreakTester(model_callback=lambda p: "I'm unable to help due to safety policies.")
 jb_summary = jb.run_test_suite(test_categories=["prompt_escalation", "prohibited_content"])
 print("Jailbreak prompts:", jb_summary["total"])
+```
+
+### Command-line Interface
+
+Run testers directly from your terminal:
+
+```bash
+# Prompt Injection (all default categories)
+adversarial-llm-test prompt-injection -o results_pi.json
+
+# Jailbreak (selected categories, async with concurrency)
+adversarial-llm-test jailbreak --categories deception guardrail_bypass --async-mode --max-concurrent 20 -o results_jb.json
 ```
 
 ### Custom Model Integration

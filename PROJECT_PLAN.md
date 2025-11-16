@@ -282,21 +282,22 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
     - Template library for common jailbreak patterns
   
 - [ ] Evaluation & Benchmarking:
-  - [ ] WildBench integration (see Phase 6.25 for full implementation)
+  - ✅ Baseline evaluation hooks and reporting (AdvancedReporter)
+  - ℹ️ WildBench integration (see Phase 6.25 for full implementation)
   
 - [ ] Integration capabilities:
-  - [ ] Local inference support (see Phase 6.5 for full implementation)
-  - [ ] Cloud API integration helpers:
-    - [ ] OpenAI API integration helper
-    - [ ] Anthropic API integration helper
-    - [ ] HuggingFace API integration helper
-    - [ ] Custom API wrapper support
+  - ℹ️ Local inference support (see Phase 6.5 for full implementation)
+  - ✅ Cloud API integration helpers:
+    - ✅ OpenAI API integration helper
+    - ✅ Anthropic API integration helper
+    - ✅ HuggingFace API integration helper
+    - ✅ Custom API wrapper support
   
-- [ ] Command-line interface:
-  - [ ] CLI tool for running tests
-  - [ ] Config file support (YAML/JSON)
-  - [ ] Interactive mode
-  - [ ] Progress bars and better UX
+- [x] Command-line interface:
+  - ✅ CLI tool for running tests (`adversarial-llm-test`)
+  - ℹ️ Config file support (YAML/JSON) – future enhancement
+  - ℹ️ Interactive mode – future enhancement
+  - ℹ️ Progress bars and better UX – future enhancement
   
 - [ ] Performance optimizations:
   - [ ] Caching mechanisms
