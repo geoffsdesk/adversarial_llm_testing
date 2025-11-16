@@ -121,6 +121,14 @@ async def main():
     
     print(tester.get_results_summary())
 
+    # Async Jailbreak testing
+    from adversarial_llm_testing import JailbreakTester
+    jb = JailbreakTester(model_callback=async_model)
+    jb_summary = await jb.run_test_suite_async(
+        test_categories=["deception", "guardrail_bypass"], max_concurrent=10
+    )
+    print("Async jailbreak prompts:", jb_summary["total"])
+
 asyncio.run(main())
 ```
 
@@ -152,7 +160,8 @@ print(f"Is Safe: {result['is_safe']}")
 from adversarial_llm_testing import (
     PromptInjectionTester,
     RolePlayingTester,
-    DefenseAnalyzer
+    DefenseAnalyzer,
+    JailbreakTester
 )
 
 # Configure custom test parameters
@@ -187,6 +196,11 @@ analysis = analyzer.analyze_results(all_results)
 
 print(analyzer.generate_defense_report(analysis))
 analyzer.export_analysis(analysis, "defense_report.md", format="markdown")
+
+# Jailbreak & Guardrail testing (sync)
+jb = JailbreakTester(model_callback=lambda p: "I'm unable to help due to safety policies.")
+jb_summary = jb.run_test_suite(test_categories=["prompt_escalation", "prohibited_content"])
+print("Jailbreak prompts:", jb_summary["total"])
 ```
 
 ### Custom Model Integration

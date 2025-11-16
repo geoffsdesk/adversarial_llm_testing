@@ -264,22 +264,22 @@ This document outlines the development roadmap for the Adversarial LLM Testing L
   - ✅ Comparative analysis across models (side-by-side comparison reports)
   - ✅ Historical trend tracking (timestamp-based analytics with trend visualization)
   
-- [ ] Jailbreak & Guardrail Testing:
-  - [ ] Chain-of-Thought (CoT) Hijacking / Puzzle Padding (99% ASR technique)
-  - [ ] Context Poisoning / Long-Context Exploitation (Ninja, Echo Chamber)
-  - [ ] Helpfulness Exploitation / Framing Attacks (1-shot academic research)
-  - [ ] Adaptive / Iterative Optimization (GAAF, FlipAttack, RL-based)
-  - [ ] Deception Tactics (Screenplay, Speculative Knowledge, API masking)
-  - [ ] Prompt escalation techniques tester
-  - [ ] Guardrail bypass testing methods
-  - [ ] Prohibited content generation testing
-  - [ ] Model version comparison testing (frontier models: GPT-5, Claude 4.5, Gemini 2.5, Grok 4)
-  - [ ] HarmBench integration (see Phase 7.5 for full implementation)
-  - [ ] Multimodal / Text-to-Video Guardrail Testing (see Phase 7.5 for full implementation)
-  - [ ] Jailbreak vulnerability assessment with ASR tracking
-  - [ ] Guardrail effectiveness evaluation
-  - [ ] Iterative optimization engine
-  - [ ] Template library for common jailbreak patterns
+- [x] Jailbreak & Guardrail Testing (foundational):
+  - ✅ JailbreakTester class implemented (sync + async)
+  - ✅ Prompt escalation techniques
+  - ✅ Chain-of-Thought (CoT) hijacking / puzzle padding prompts
+  - ✅ Context poisoning / long-context exploitation prompts
+  - ✅ Helpfulness exploitation / framing prompts
+  - ✅ Adaptive / iterative prompts (format shifting, JSON-only, payload-only)
+  - ✅ Deception tactics (screenplay, API masking, speculative knowledge)
+  - ✅ Guardrail bypass prompts (format shifting, YAML/JSON wrappers)
+  - ✅ Prohibited content demand prompts (refusal enforcement checks)
+  - ℹ️ Advanced items deferred to Phase 7.5:
+    - Model version comparison testing (frontier models)
+    - HarmBench integration (standardized evaluation)
+    - Multimodal / Text-to-Video Guardrail Testing (T2VSafetyBench)
+    - ASR tracking and iterative optimization engine
+    - Template library for common jailbreak patterns
   
 - [ ] Evaluation & Benchmarking:
   - [ ] WildBench integration (see Phase 6.25 for full implementation)
