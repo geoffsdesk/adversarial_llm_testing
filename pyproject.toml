@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "A Python library for defensive security research and red teaming to test LLM vulnerabilities"
 readme = "README.md"
 requires-python = ">=3.8"
-license = {text = "MIT"}
+license = {text = "AGPL-3.0"}
 authors = [
     {name = "Security Research"},
 ]
@@ -26,7 +26,7 @@ classifiers = [
     "Intended Audience :: Science/Research",
     "Topic :: Security",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
