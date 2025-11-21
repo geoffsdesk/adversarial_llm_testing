@@ -1,4 +1,4 @@
-import pytest
+
 from adversarial_llm_testing.multimodal import MultimodalTester
 
 

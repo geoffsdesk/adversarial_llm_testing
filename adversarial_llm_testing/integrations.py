@@ -5,7 +5,7 @@ These helpers avoid hard dependencies on provider SDKs. Pass lightweight callabl
 or client functions and receive a standard callback signature: Callable[[str], str]
 """
 
-from typing import Callable, Any
+from typing import Callable
 
 
 def openai_chat_callback(send_fn: Callable[[str], str]) -> Callable[[str], str]:
@@ -15,7 +15,10 @@ def openai_chat_callback(send_fn: Callable[[str], str]) -> Callable[[str], str]:
     Example:
         import openai
         def send(prompt: str) -> str:
-            resp = openai.ChatCompletion.create(model="gpt-4o-mini", messages=[{"role":"user","content":prompt}])
+            resp = openai.ChatCompletion.create(
+                model="gpt-4o-mini",
+                messages=[{"role":"user","content":prompt}]
+            )
             return resp.choices[0].message.content
         cb = openai_chat_callback(send)
     """

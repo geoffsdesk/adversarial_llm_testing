@@ -8,7 +8,7 @@ These adapters avoid hard dependencies by supporting two modes:
 Both adapters expose a callable interface: adapter(prompt: str) -> str
 """
 
-from typing import Any, Callable, Dict, Optional
+from typing import Any, Optional
 
 
 class LlamaCppAdapter:
@@ -116,7 +116,9 @@ class VLLMAdapter:
         client = self._ensure_client()
         try:
             # vLLM API: client.generate([prompt], sampling_params=...)
-            outputs = client.generate([prompt], sampling_params=self._sampling_params)  # type: ignore
+            outputs = client.generate(  # type: ignore
+                [prompt], sampling_params=self._sampling_params
+            )
             if outputs and outputs[0].outputs:
                 return outputs[0].outputs[0].text.strip()
             return ""
