@@ -28,6 +28,8 @@ from .advanced_reporting import AdvancedReporter
 from .jailbreak import JailbreakTester
 from .wildbench import WildBenchTester
 from .local_inference import LlamaCppAdapter, VLLMAdapter
+from .multimodal import MultimodalTester
+from .harmbench import HarmBenchTester
 
 __all__ = [
     "PromptInjectionTester",
@@ -40,4 +42,6 @@ __all__ = [
     "WildBenchTester",
     "LlamaCppAdapter",
     "VLLMAdapter",
+    "MultimodalTester",
+    "HarmBenchTester",
 ]
