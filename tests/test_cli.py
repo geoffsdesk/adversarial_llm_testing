@@ -1,5 +1,5 @@
 from unittest.mock import patch, MagicMock
-from adversarial_llm_testing.cli import build_parser, main
+from adversarial_llm_testing.cli import build_parser
 
 
 def test_cli_builds():
