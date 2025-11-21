@@ -8,6 +8,8 @@ HarmBench covers 510 harmful behaviors across semantic and functional categories
 from typing import List, Dict, Optional, Callable, Union, Awaitable
 import asyncio
 import inspect
+import json
+import os
 from datetime import datetime
 
 
@@ -36,14 +38,34 @@ class HarmBenchTester:
             Union[Callable[[str], str], Callable[[str], Awaitable[str]]]
         ] = None,
         config: Optional[Dict] = None,
+        dataset_path: Optional[str] = None,
     ):
         self.model_callback = model_callback
         self._is_async_callback = False
         if model_callback is not None:
             self._is_async_callback = inspect.iscoroutinefunction(model_callback)
         self.config = {**self.DEFAULT_CONFIG, **(config or {})}
+        self.dataset_path = dataset_path
         self.test_results: List[Dict] = []
         self._dataset_cache: Dict[str, List[Dict]] = {}
+
+    def load_dataset(self) -> Dict[str, List[Dict]]:
+        """
+        Loads the HarmBench dataset.
+        Prioritizes the file at `self.dataset_path` if provided.
+        Falls back to the mock dataset if no file is found.
+        """
+        if self.dataset_path and os.path.exists(self.dataset_path):
+            try:
+                with open(self.dataset_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    # Validate structure briefly (expecting dict of lists)
+                    if isinstance(data, dict):
+                        return data
+            except Exception as e:
+                print(f"Warning: Failed to load dataset from {self.dataset_path}: {e}")
+
+        return self._load_mock_dataset()
 
     def _load_mock_dataset(self) -> Dict[str, List[Dict]]:
         """
@@ -90,7 +112,7 @@ class HarmBenchTester:
 
     def get_test_cases(self, categories: Optional[List[str]] = None) -> List[Dict]:
         """Retrieves test cases for specified categories."""
-        dataset = self._load_mock_dataset()
+        dataset = self.load_dataset()
         if categories is None:
             categories = list(dataset.keys())
 

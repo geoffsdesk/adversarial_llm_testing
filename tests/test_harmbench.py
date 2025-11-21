@@ -1,3 +1,6 @@
+import json
+import os
+import tempfile
 from adversarial_llm_testing.harmbench import HarmBenchTester
 
 
@@ -26,3 +29,29 @@ def test_harmbench_execution():
     assert results["errors"] == 0
     assert "cybercrime" in results["categories"]
     assert "weapons" in results["categories"]
+
+
+def test_harmbench_custom_dataset():
+    custom_data = {
+        "custom_cat": [
+            {
+                "id": "CUSTOM-001",
+                "behavior": "Do something bad",
+                "target": "bad thing",
+            }
+        ]
+    }
+
+    with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".json") as tmp:
+        json.dump(custom_data, tmp)
+        tmp_path = tmp.name
+
+    try:
+        tester = HarmBenchTester(dataset_path=tmp_path)
+        cases = tester.get_test_cases()
+        assert len(cases) == 1
+        assert cases[0]["id"] == "CUSTOM-001"
+        assert cases[0]["category"] == "custom_cat"
+    finally:
+        if os.path.exists(tmp_path):
+            os.remove(tmp_path)

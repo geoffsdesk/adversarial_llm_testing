@@ -5,6 +5,8 @@ from typing import List
 
 from .prompt_injection import PromptInjectionTester
 from .jailbreak import JailbreakTester
+from .harmbench import HarmBenchTester
+from .multimodal import MultimodalTester
 
 
 def _run_prompt_injection(args: argparse.Namespace) -> int:
@@ -45,6 +47,29 @@ def _run_jailbreak(args: argparse.Namespace) -> int:
     return 0
 
 
+def _run_harmbench(args: argparse.Namespace) -> int:
+    tester = HarmBenchTester(model_callback=None)
+    categories: List[str] = args.categories or None
+    summary = tester.run_evaluation(categories)
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as f:
+            json.dump(summary, f, indent=2)
+    else:
+        print(json.dumps(summary, indent=2))
+    return 0
+
+
+def _run_multimodal(args: argparse.Namespace) -> int:
+    tester = MultimodalTester(model_callback=None)
+    summary = tester.run_test_suite()
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as f:
+            json.dump(summary, f, indent=2)
+    else:
+        print(json.dumps(summary, indent=2))
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="adversarial-llm-test",
@@ -63,6 +88,15 @@ def build_parser() -> argparse.ArgumentParser:
     jb.add_argument("--max-concurrent", type=int, default=20, help="Max concurrent tests (async)")
     jb.add_argument("-o", "--output", help="Write JSON summary to file")
     jb.set_defaults(func=_run_jailbreak)
+
+    hb = sub.add_parser("harmbench", help="Run HarmBenchTester")
+    hb.add_argument("--categories", nargs="*", help="Categories to run")
+    hb.add_argument("-o", "--output", help="Write JSON summary to file")
+    hb.set_defaults(func=_run_harmbench)
+
+    mm = sub.add_parser("multimodal", help="Run MultimodalTester")
+    mm.add_argument("-o", "--output", help="Write JSON summary to file")
+    mm.set_defaults(func=_run_multimodal)
 
     return parser
 
