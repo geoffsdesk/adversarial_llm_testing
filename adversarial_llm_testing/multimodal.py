@@ -83,7 +83,13 @@ class MultimodalTester:
 
     # === Execution ===
 
-    def _record(self, prompt: str, category: str, response: Optional[str] = None, error: Optional[str] = None) -> Dict:
+    def _record(
+        self,
+        prompt: str,
+        category: str,
+        response: Optional[str] = None,
+        error: Optional[str] = None,
+    ) -> Dict:
         result = {
             "prompt": prompt,
             "category": category,
@@ -174,7 +180,9 @@ class MultimodalTester:
         if "mutation_synonyms" in test_categories:
             all_prompts += [(p, "mutation_synonyms") for p in self.generate_mutation_synonyms()]
         if "cross_modal_exploits" in test_categories:
-            all_prompts += [(p, "cross_modal_exploits") for p in self.generate_cross_modal_exploits()]
+            all_prompts += [
+                (p, "cross_modal_exploits") for p in self.generate_cross_modal_exploits()
+            ]
 
         concurrent_limit = max_concurrent or self.config.get("batch_size", 10)
         sem = asyncio.Semaphore(concurrent_limit)
@@ -188,7 +196,13 @@ class MultimodalTester:
         summary = {"total": 0, "errors": 0, "categories": {}, "details": []}
         for r in results:
             if isinstance(r, Exception):
-                r = {"prompt": "", "category": "unknown", "error": str(r), "executed": False, "timestamp": datetime.now().isoformat()}
+                r = {
+                    "prompt": "",
+                    "category": "unknown",
+                    "error": str(r),
+                    "executed": False,
+                    "timestamp": datetime.now().isoformat(),
+                }
             summary["details"].append(r)
             summary["total"] += 1
             if r.get("error"):

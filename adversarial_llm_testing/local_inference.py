@@ -7,6 +7,7 @@ These adapters avoid hard dependencies by supporting two modes:
 
 Both adapters expose a callable interface: adapter(prompt: str) -> str
 """
+
 from typing import Any, Callable, Dict, Optional
 
 
@@ -121,5 +122,3 @@ class VLLMAdapter:
             return ""
         except Exception as e:
             return f"Error: {e}"
-
-

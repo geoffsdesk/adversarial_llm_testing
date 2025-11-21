@@ -29,5 +29,3 @@ def test_vllm_adapter_with_injected_client():
     adapter = VLLMAdapter(client=DummyVLLMClient(), sampling_params=object())
     out = adapter("hello")
     assert "VLLM:" in out
-
-

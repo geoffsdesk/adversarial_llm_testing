@@ -23,13 +23,17 @@ def _run_jailbreak(args: argparse.Namespace) -> int:
     tester = JailbreakTester(model_callback=None)
     categories: List[str] = args.categories or None
     if args.async_mode:
+
         async def _amain():
-            summary = await tester.run_test_suite_async(categories, max_concurrent=args.max_concurrent)
+            summary = await tester.run_test_suite_async(
+                categories, max_concurrent=args.max_concurrent
+            )
             if args.output:
                 with open(args.output, "w", encoding="utf-8") as f:
                     json.dump(summary, f, indent=2)
             else:
                 print(json.dumps(summary, indent=2))
+
         asyncio.run(_amain())
         return 0
     summary = tester.run_test_suite(categories)
@@ -44,7 +48,7 @@ def _run_jailbreak(args: argparse.Namespace) -> int:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="adversarial-llm-test",
-        description="Run adversarial LLM tests (prompt injection, jailbreak)"
+        description="Run adversarial LLM tests (prompt injection, jailbreak)",
     )
     sub = parser.add_subparsers(dest="command", required=True)
 
@@ -71,4 +75,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

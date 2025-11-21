@@ -48,5 +48,3 @@ class TestWildBenchTester:
         summary = wb.evaluate()
         assert "groups" in summary
         assert isinstance(summary["groups"], dict)
-
-

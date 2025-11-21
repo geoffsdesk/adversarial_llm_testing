@@ -13,5 +13,3 @@ def test_cli_subcommands_exist():
     assert hasattr(args, "func")
     args = parser.parse_args(["jailbreak", "--async-mode"])
     assert hasattr(args, "func")
-
-

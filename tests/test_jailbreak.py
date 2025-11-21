@@ -35,9 +35,7 @@ class TestJailbreakTester:
 
     def test_run_test_suite_sync_with_callback(self):
         jb = JailbreakTester(model_callback=dummy_safe_model)
-        summary = jb.run_test_suite(
-            test_categories=["prompt_escalation", "prohibited_content"]
-        )
+        summary = jb.run_test_suite(test_categories=["prompt_escalation", "prohibited_content"])
         assert summary["total"] > 0
         assert any(d["executed"] for d in summary["details"])
 
@@ -49,5 +47,3 @@ class TestJailbreakTester:
         )
         assert summary["total"] > 0
         assert any(d["executed"] for d in summary["details"])
-
-

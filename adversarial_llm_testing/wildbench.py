@@ -6,6 +6,7 @@ representative tasks and compute simplified WB-Reward and WB-Score-style metrics
 without pulling external datasets (for portability). Replace placeholders with
 real dataset loading and judge models in Phase 6.25 extended work if needed.
 """
+
 from typing import List, Dict, Optional, Callable, Union, Awaitable
 import asyncio
 import inspect
@@ -27,21 +28,45 @@ class WildBenchTester:
         config: Optional[Dict] = None,
     ):
         self.model_callback = model_callback
-        self._is_async_callback = inspect.iscoroutinefunction(model_callback) if model_callback else False
+        self._is_async_callback = (
+            inspect.iscoroutinefunction(model_callback) if model_callback else False
+        )
         self.config = {**self.DEFAULT_CONFIG, **(config or {})}
         self.results: List[Dict] = []
 
     # Placeholder subset of tasks (representative categories)
     def _load_tasks(self) -> List[Dict]:
         return [
-            {"id": "wb-1", "category": "reasoning", "prompt": "Reason about pros and cons of renewable energy."},
-            {"id": "wb-2", "category": "coding", "prompt": "Write a Python function to compute Fibonacci numbers."},
-            {"id": "wb-3", "category": "planning", "prompt": "Create a 7-day study plan for learning statistics."},
-            {"id": "wb-4", "category": "data_analysis", "prompt": "Explain variance vs. standard deviation with examples."},
-            {"id": "wb-5", "category": "editing", "prompt": "Improve clarity and grammar: 'Me and him was going there.'"},
+            {
+                "id": "wb-1",
+                "category": "reasoning",
+                "prompt": "Reason about pros and cons of renewable energy.",
+            },
+            {
+                "id": "wb-2",
+                "category": "coding",
+                "prompt": "Write a Python function to compute Fibonacci numbers.",
+            },
+            {
+                "id": "wb-3",
+                "category": "planning",
+                "prompt": "Create a 7-day study plan for learning statistics.",
+            },
+            {
+                "id": "wb-4",
+                "category": "data_analysis",
+                "prompt": "Explain variance vs. standard deviation with examples.",
+            },
+            {
+                "id": "wb-5",
+                "category": "editing",
+                "prompt": "Improve clarity and grammar: 'Me and him was going there.'",
+            },
         ]
 
-    def _record(self, task: Dict, response: Optional[str] = None, error: Optional[str] = None) -> Dict:
+    def _record(
+        self, task: Dict, response: Optional[str] = None, error: Optional[str] = None
+    ) -> Dict:
         result = {
             "task_id": task["id"],
             "category": task["category"],
@@ -154,11 +179,15 @@ class WildBenchTester:
                     return self._record(task, response=None)
                 try:
                     if self._is_async_callback:
-                        prompt = task["prompt"] + ("" if variant == 0 else " Please be more specific.")
+                        prompt = task["prompt"] + (
+                            "" if variant == 0 else " Please be more specific."
+                        )
                         resp = await self.model_callback(prompt)  # type: ignore
                     else:
                         loop = asyncio.get_event_loop()
-                        prompt = task["prompt"] + ("" if variant == 0 else " Please be more specific.")
+                        prompt = task["prompt"] + (
+                            "" if variant == 0 else " Please be more specific."
+                        )
                         resp = await loop.run_in_executor(None, self.model_callback, prompt)
                     return self._record(task, response=resp)
                 except Exception as e:
@@ -222,5 +251,3 @@ class WildBenchTester:
             "debugging": "coding_debugging",
         }
         return mapping.get(category, "others")
-
-
