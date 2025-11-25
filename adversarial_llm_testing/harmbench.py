@@ -40,15 +40,31 @@ class HarmBenchTester:
         config: Optional[Dict] = None,
         dataset_path: Optional[str] = None,
     ):
-        self.model_callback = model_callback
+        self._model_callback = None
         self._is_async_callback = False
-        if model_callback is not None:
-            self._is_async_callback = inspect.iscoroutinefunction(model_callback)
+        self.model_callback = model_callback  # Use setter
         self.config = {**self.DEFAULT_CONFIG, **(config or {})}
         self.dataset_path = dataset_path
         self.test_results: List[Dict] = []
         self._dataset_cache: Dict[str, List[Dict]] = {}
 
+    @property
+    def model_callback(
+        self,
+    ) -> Optional[Union[Callable[[str], str], Callable[[str], Awaitable[str]]]]:
+        return self._model_callback
+
+    @model_callback.setter
+    def model_callback(
+        self,
+        callback: Optional[
+            Union[Callable[[str], str], Callable[[str], Awaitable[str]]]
+        ],
+    ):
+        self._model_callback = callback
+        self._is_async_callback = False
+        if callback is not None:
+            self._is_async_callback = inspect.iscoroutinefunction(callback)
     def load_dataset(self) -> Dict[str, List[Dict]]:
         """
         Loads the HarmBench dataset.

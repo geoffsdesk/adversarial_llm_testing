@@ -27,13 +27,29 @@ class WildBenchTester:
         ] = None,
         config: Optional[Dict] = None,
     ):
-        self.model_callback = model_callback
-        self._is_async_callback = (
-            inspect.iscoroutinefunction(model_callback) if model_callback else False
-        )
+        self._model_callback = None
+        self._is_async_callback = False
+        self.model_callback = model_callback  # Use setter
         self.config = {**self.DEFAULT_CONFIG, **(config or {})}
         self.results: List[Dict] = []
 
+    @property
+    def model_callback(
+        self,
+    ) -> Optional[Union[Callable[[str], str], Callable[[str], Awaitable[str]]]]:
+        return self._model_callback
+
+    @model_callback.setter
+    def model_callback(
+        self,
+        callback: Optional[
+            Union[Callable[[str], str], Callable[[str], Awaitable[str]]]
+        ],
+    ):
+        self._model_callback = callback
+        self._is_async_callback = False
+        if callback is not None:
+            self._is_async_callback = inspect.iscoroutinefunction(callback)
     # Placeholder subset of tasks (representative categories)
     def _load_tasks(self) -> List[Dict]:
         return [
