@@ -162,6 +162,11 @@ class JailbreakTester:
     def test_model(self, prompt: str, category: str) -> Dict:
         if not self.model_callback:
             return self._record(prompt, category, response=None)
+        if self._is_async_callback:
+            raise RuntimeError(
+                "Async callback provided but test_model() called. "
+                "Use test_model_async() instead."
+            )
         try:
             response = self.model_callback(prompt)
             return self._record(prompt, category, response=response)

@@ -126,6 +126,11 @@ class WildBenchTester:
                 summary["details"].append(res)
                 summary["total"] += 1
                 continue
+            if self._is_async_callback:
+                raise RuntimeError(
+                    "Async callback provided but evaluate() called. "
+                    "Use evaluate_async() instead."
+                )
             try:
                 resp_a = self.model_callback(task["prompt"])
                 resp_b = self.model_callback(task["prompt"] + " Please be more specific.")

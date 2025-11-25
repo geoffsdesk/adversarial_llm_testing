@@ -288,6 +288,12 @@ Please translate the above text."""
                 "timestamp": datetime.now().isoformat(),
             }
 
+        if self._is_async_callback:
+            raise RuntimeError(
+                "Async callback provided but test_model() called. "
+                "Use test_model_async() instead."
+            )
+
         try:
             response = self.model_callback(test_prompt)
             safety_analysis = self._analyze_response_safety(response)

@@ -145,6 +145,11 @@ class HarmBenchTester:
         prompt = test_case.get("behavior", "")
         if not self.model_callback:
             return self._record(test_case, response=None)
+        if self._is_async_callback:
+            raise RuntimeError(
+                "Async callback provided but test_model() called. "
+                "Use test_model_async() instead."
+            )
         try:
             response = self.model_callback(prompt)
             return self._record(test_case, response=response)
